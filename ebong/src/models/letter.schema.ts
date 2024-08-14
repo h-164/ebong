@@ -8,7 +8,9 @@ export const LETTER_SCHEMA = new Schema({
         type:Boolean, 
         default:false
     },
-    replyContent:String,
+    replyContent:{
+        type:String,
+        default:""},
     date:{
         type:Date,
         default:Date.now
