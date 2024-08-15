@@ -13,4 +13,4 @@ export const VotePRofileSchema = new Schema({
 })
 
 export const VOTE_PROFILE = 
-    mongoose.models.VoteProfile? mongoose.model("vote_profile", VotePRofileSchema);
+    mongoose.models.VoteProfile?? mongoose.model("VoteProfile", VotePRofileSchema);
