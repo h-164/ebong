@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 
-export const LETTER_SCHEMA = new Schema({
+export const LetterSchema = new Schema({
     sender:String,
     recipient:String,
     letterContent:String,
@@ -17,5 +17,5 @@ export const LETTER_SCHEMA = new Schema({
     }
 })
 
-export const LETTER = 
-    mongoose.models.LETTER?? mongoose.model("Letter", LETTER_SCHEMA);
+
+export const LETTER = mongoose.models.Letter?? mongoose.model("Letter", LetterSchema);

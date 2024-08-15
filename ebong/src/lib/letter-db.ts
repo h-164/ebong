@@ -10,15 +10,15 @@ export const getLetters = async ()=>{
 
 export const postLetter = async ({
         sender,
-        resipient,
+        recipient,
         letterContent,
     }:{
         sender:string;
-        resipient:string;
+        recipient:string;
         letterContent:string;
     })=>{
         await connectDb();
-        const letter = new LETTER({sender, resipient, letterContent, date:Date.now()});
+        const letter = new LETTER({sender, recipient, letterContent, date:Date.now()});
         await letter.save();
 
         return {letter};

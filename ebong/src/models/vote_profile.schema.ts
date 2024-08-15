@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 
-export const VOTE_PROFILE_SCHEMA = new Schema({
+export const VotePRofileSchema = new Schema({
     name:String,
     introduction:String,
     voteCount:{
@@ -13,4 +13,4 @@ export const VOTE_PROFILE_SCHEMA = new Schema({
 })
 
 export const VOTE_PROFILE = 
-    mongoose.models.VOTE_PROFILE?? mongoose.model("vote_profile", VOTE_PROFILE_SCHEMA);
+    mongoose.models.VoteProfile? mongoose.model("vote_profile", VotePRofileSchema);
