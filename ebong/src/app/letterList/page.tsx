@@ -1,3 +1,5 @@
+import { Letter } from "@/types/Letter";
+
 export default async function WriteList() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/letters`,
@@ -8,7 +10,7 @@ export default async function WriteList() {
 
   return (
     <>
-      {lettersArray?.map((letter: any) => (
+      {lettersArray?.map((letter: Letter) => (
         <>
           <h3>to.{letter.recipient}</h3>
           <p>{letter.letterContent}</p>
