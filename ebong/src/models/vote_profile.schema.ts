@@ -9,7 +9,7 @@ export const VotePRofileSchema = new Schema({
     },
     smilingImg:String,
     cryingImg:String,
-    Link:String
+    link:String
 })
 
 export const VOTE_PROFILE = 

@@ -1,3 +1,4 @@
+import { VoteProfile } from "@/types/VoteProfile";
 import Image from "next/image";
 
 export default async function Vote() {
@@ -10,7 +11,7 @@ export default async function Vote() {
 
   return (
     <>
-      {profileArray?.map((profile: any) => (
+      {profileArray?.map((profile: VoteProfile) => (
         <>
           <Image
             src={profile.smilingImg}
