@@ -13,13 +13,19 @@ export async function GET(request: NextRequest){
 }
 
 export async function PATCH(request: NextRequest){
-    try {
-        const {_id} = await request.json();
-        const data = await updateVoteProfiles(_id);
-        return Response.json({ data });
-    } catch (error:any) {
-      console.error(error.response);
-      
-      return Response.json({ error}, { status: 500 });
+  try {
+    const { searchParams } = request.nextUrl;
+    const _id = searchParams.get("_id");
+
+    if (!_id) {
+      return Response.json({ error: "_id is required" });
     }
+
+    const data = await  updateVoteProfiles({_id});
+
+    return Response.json({ data });
+  } catch (error) {
+    return Response.json({ error }, { status: 500 });
+  }
+
   }
