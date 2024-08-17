@@ -1,12 +1,9 @@
 import { Letter } from "@/types/Letter";
+import { clientApi } from "@/lib/client-api/letters";
 
 export default async function WriteList() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/letters`,
-    { cache: "no-store" }
-  );
-  const data = await response.json();
-  const lettersArray = data.data.letters;
+  const response = await clientApi.getLetters();
+  const lettersArray = response.letters;
 
   return (
     <>

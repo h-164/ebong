@@ -10,7 +10,7 @@ const getVoteProfiles = async (): Promise<VoteProfilesResponse> => {
     return data;
   };
 
-  const patchVoteProfiles = async ( _id:string, voteCount: number,): Promise<VoteProfileResponse> => {
+const patchVoteProfiles = async ( _id:string, voteCount: number,): Promise<VoteProfileResponse> => {
     const response = await fetch(
       `${VOTE_PROFILES_END_POINT}?_id=${_id}`,
       {
