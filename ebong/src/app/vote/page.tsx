@@ -3,17 +3,14 @@
 import { useEffect, useState } from "react";
 import { VoteProfile } from "@/types/VoteProfile";
 import Image from "next/image";
+import { clientApi } from "@/lib/client-api/vote-profiles";
 
 export default function Vote() {
   const [profileArray, setProfileArray] = useState<VoteProfile[]>([]);
 
   const fetchProfiles = async () => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/vote_profiles`,
-      { cache: "no-store" }
-    );
-    const data = await response.json();
-    setProfileArray(data.data.vote_profiles);
+    const data = await clientApi.getVoteProfiles();
+    setProfileArray(data.vote_profiles);
   };
 
   useEffect(() => {
@@ -28,18 +25,7 @@ export default function Vote() {
     voteCount: number;
   }) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/vote_profiles?_id=${_id}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ voteCount: voteCount }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to update vote count");
-      }
+      await clientApi.patchVoteProfiles(_id, voteCount);
 
       await fetchProfiles();
     } catch (error) {
