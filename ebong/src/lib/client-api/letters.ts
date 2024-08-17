@@ -10,6 +10,24 @@ const getLetters = async (): Promise<LettersResponse> => {
     return data;
   };
 
-  export const clientApi = {
+const postLetters = async (sender:String, recipient:string, letterContent:string): Promise<LetterResponse> => {
+    const res = await fetch(
+        VOTE_PROFILES_END_POINT,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ sender, recipient, letterContent }),
+        }
+      );
+
+      const { data } = await res.json();
+  
+      return data;
+}
+
+export const clientApi = {
     getLetters,
+    postLetters
   } as const;
