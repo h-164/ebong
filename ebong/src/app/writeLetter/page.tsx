@@ -2,8 +2,12 @@
 
 import { clientApi } from "@/lib/client-api/letters";
 import { FormEvent } from "react";
+import { useContext } from "react";
+import { LetterContext } from "@/provider/letter-provider";
 
 export default function WriteLetter() {
+  const { writeLetter } = useContext(LetterContext);
+
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -21,7 +25,8 @@ export default function WriteLetter() {
     const letterContent = letterContentElement?.value;
 
     try {
-      await clientApi.postLetters(sender, recipient, letterContent);
+      clientApi.postLetters(sender, recipient, letterContent);
+      await writeLetter({ sender, recipient, letterContent });
     } catch (error) {
       console.error("Error:", error);
     }

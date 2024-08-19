@@ -1,6 +1,6 @@
 import { LetterList } from "../component/LetterList";
 
-export default async function WriteList() {
+export default async function LetterListPage() {
   return (
     <>
       <LetterList />

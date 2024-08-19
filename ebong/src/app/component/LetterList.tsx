@@ -1,9 +1,13 @@
-import { Letter } from "@/types/Letter";
-import { clientApi } from "@/lib/client-api/letters";
+"use client";
 
-export const LetterList = async () => {
-  const response = await clientApi.getLetters();
-  const lettersArray = response.letters;
+import { Letter } from "@/types/Letter";
+import { useContext } from "react";
+import { LetterContext } from "@/provider/letter-provider";
+
+export const LetterList = () => {
+  const { letters } = useContext(LetterContext);
+  const lettersArray = letters;
+
   return (
     <>
       {lettersArray?.map((letter: Letter) => (
