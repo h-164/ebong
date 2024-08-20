@@ -11,7 +11,7 @@ interface VoteProfilesContextValue {
 
 const defaultVoteProfilesContextValue: VoteProfilesContextValue = {
   voteProfiles: [],
-  vote: (_id: string, voteCount: number) => Promise.resolve(),
+  vote: (_id: string) => Promise.resolve(),
 };
 
 export const VoteProfileContext = createContext<VoteProfilesContextValue>(

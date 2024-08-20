@@ -1,6 +1,6 @@
 import { VoteProfileList } from "../component/VoteProfileList";
 
-export default function Vote() {
+export default function VoteResultPage() {
   return (
     <>
       <VoteProfileList />

@@ -2,7 +2,7 @@ import { getLetters, postLetter} from "../../../lib/letter-db";
 import { NextRequest } from "next/server";
 
 
-export async function GET(request: NextRequest){
+export async function GET(){
   try {
     const data = await getLetters();
     return Response.json({ data });

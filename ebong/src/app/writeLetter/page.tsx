@@ -1,6 +1,5 @@
 "use client";
 
-import { clientApi } from "@/lib/client-api/letters";
 import { FormEvent } from "react";
 import { useContext } from "react";
 import { LetterContext } from "@/provider/letter-provider";
@@ -25,7 +24,6 @@ export default function WriteLetter() {
     const letterContent = letterContentElement?.value;
 
     try {
-      clientApi.postLetters(sender, recipient, letterContent);
       await writeLetter({ sender, recipient, letterContent });
     } catch (error) {
       console.error("Error:", error);

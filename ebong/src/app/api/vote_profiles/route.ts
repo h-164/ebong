@@ -2,11 +2,10 @@ import { getVoteProfiles, updateVoteProfiles} from "../../../lib/vote_profile-db
 import { NextRequest } from "next/server";
 
 
-export async function GET(request: NextRequest){
+export async function GET(){
   try {
     const data = await getVoteProfiles();
     return Response.json({ data });
- 
   } catch (error) {
     return Response.json({ error }, { status: 500 });
   }
@@ -27,5 +26,4 @@ export async function PATCH(request: NextRequest){
   } catch (error) {
     return Response.json({ error }, { status: 500 });
   }
-
-  }
+}
