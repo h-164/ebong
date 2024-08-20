@@ -1,7 +1,9 @@
-import { clientApi } from "@/lib/client-api/letters";
+import { letterClientApi } from "@/lib/client-api/letters";
+import { voteProfileClientApi } from "@/lib/client-api/vote-profiles";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import LettersProvider from "@/provider/letter-provider";
+import VoteProfilesProvider from "@/provider/vote-profile-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +17,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const data = await clientApi.getLetters();
+  const letter_data = await letterClientApi.getLetters();
+  const vote_profile_data = await voteProfileClientApi.getVoteProfiles();
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <LettersProvider initialLetters={data.letters}>
-          {children}
+        <LettersProvider initialLetters={letter_data.letters}>
+          <VoteProfilesProvider
+            initialVoteProfiles={vote_profile_data.vote_profiles}
+          >
+            {children}
+          </VoteProfilesProvider>
         </LettersProvider>
       </body>
     </html>

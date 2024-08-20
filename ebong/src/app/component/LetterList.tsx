@@ -10,8 +10,8 @@ export const LetterList = () => {
 
   return (
     <>
-      {lettersArray?.map((letter: Letter) => (
-        <>
+      {lettersArray?.map((letter: Letter, index) => (
+        <div key={index}>
           <h3>to.{letter.recipient}</h3>
           <p>{letter.letterContent}</p>
           <p>{letter.date}</p>
@@ -23,7 +23,7 @@ export const LetterList = () => {
               </p>
             </>
           )}
-        </>
+        </div>
       ))}
     </>
   );

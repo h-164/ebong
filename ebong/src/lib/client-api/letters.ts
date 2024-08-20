@@ -27,7 +27,7 @@ const postLetters = async (sender:String, recipient:string, letterContent:string
       return data;
 }
 
-export const clientApi = {
+export const letterClientApi = {
     getLetters,
     postLetters
   } as const;

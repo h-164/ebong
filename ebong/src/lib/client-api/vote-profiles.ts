@@ -24,7 +24,7 @@ const patchVoteProfiles = async ( _id:string, voteCount: number,): Promise<VoteP
     return data;
   };
 
-  export const clientApi = {
+  export const voteProfileClientApi = {
     getVoteProfiles,
     patchVoteProfiles
   } as const;

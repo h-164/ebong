@@ -1,40 +1,23 @@
 "use client";
 
-import { VoteProfile } from "@/types/VoteProfile";
-import { clientApi } from "@/lib/client-api/vote-profiles";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import Image from "next/image";
+import { VoteProfileContext } from "@/provider/vote-profile-provider";
 
 export const VoteProfileList = () => {
-  const [profileArray, setProfileArray] = useState<VoteProfile[]>([]);
+  const { voteProfiles, vote } = useContext(VoteProfileContext);
 
-  const fetchProfiles = async () => {
-    const data = await clientApi.getVoteProfiles();
-    setProfileArray(data.vote_profiles);
-  };
-
-  useEffect(() => {
-    fetchProfiles();
-  }, []);
-
-  const handleVote = async ({
-    _id,
-    voteCount,
-  }: {
-    _id: string;
-    voteCount: number;
-  }) => {
+  const handleVote = async (_id: string, voteCount: number) => {
     try {
-      await clientApi.patchVoteProfiles(_id, voteCount);
-
-      await fetchProfiles();
+      await vote(_id, voteCount);
     } catch (error) {
       console.error("Error voting:", error);
     }
   };
+
   return (
     <>
-      {profileArray?.map((profile: VoteProfile) => (
+      {voteProfiles?.map((profile) => (
         <div key={profile._id}>
           <Image
             src={profile.smilingImg}
@@ -46,9 +29,7 @@ export const VoteProfileList = () => {
           <p>{profile.introduction}</p>
           <p>{profile.voteCount}</p>
           <button
-            onClick={() =>
-              handleVote({ _id: profile._id, voteCount: profile.voteCount })
-            }
+            onClick={() => handleVote(profile._id, profile.voteCount + 1)}
           >
             투표하기
           </button>

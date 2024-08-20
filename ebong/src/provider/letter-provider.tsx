@@ -1,6 +1,6 @@
 "use client";
 
-import { clientApi } from "@/lib/client-api/letters";
+import { letterClientApi } from "@/lib/client-api/letters";
 import { Letter } from "@/types/Letter";
 import { PropsWithChildren, createContext, useState } from "react";
 
@@ -43,7 +43,7 @@ export default function LettersProvider({ children, initialLetters }: Props) {
     letterContent: string;
   }) => {
     try {
-      const { letter } = await clientApi.postLetters(
+      const { letter } = await letterClientApi.postLetters(
         sender,
         recipient,
         letterContent
