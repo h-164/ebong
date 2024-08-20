@@ -1,8 +1,12 @@
 "use client";
 
 import { FormEvent } from "react";
+import { useContext } from "react";
+import { LetterContext } from "@/provider/letter-provider";
 
 export default function WriteLetter() {
+  const { writeLetter } = useContext(LetterContext);
+
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -20,23 +24,7 @@ export default function WriteLetter() {
     const letterContent = letterContentElement?.value;
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/letters`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ sender, recipient, letterContent }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("Success:", data);
+      await writeLetter({ sender, recipient, letterContent });
     } catch (error) {
       console.error("Error:", error);
     }

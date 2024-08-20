@@ -9,9 +9,9 @@ export interface VoteProfile {
   }
   
   export interface VoteProfilesResponse {
-    letters: VoteProfile[];
+    vote_profiles: VoteProfile[];
   }
   
   export interface VoteProfileResponse {
-    letter:VoteProfile;
+    voteProfile:VoteProfile;
   }
