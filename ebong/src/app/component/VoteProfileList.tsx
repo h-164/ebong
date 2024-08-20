@@ -28,9 +28,7 @@ export const VoteProfileList = () => {
           <h1>{profile.name}</h1>
           <p>{profile.introduction}</p>
           <p>{profile.voteCount}</p>
-          <button onClick={() => handleVote(profile._id, profile.voteCount)}>
-            투표하기
-          </button>
+          <button onClick={() => handleVote(profile._id)}>투표하기</button>
         </div>
       ))}
     </>
