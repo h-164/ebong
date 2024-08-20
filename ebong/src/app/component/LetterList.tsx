@@ -17,11 +17,9 @@ export const LetterList = () => {
           <p>{letter.date}</p>
           <h3>from.{letter.sender}</h3>
           {letter.isReplied && (
-            <>
-              <p>
-                ↳{letter.recipient}:{letter.replyContent}
-              </p>
-            </>
+            <p>
+              ↳{letter.recipient}:{letter.replyContent}
+            </p>
           )}
         </div>
       ))}
