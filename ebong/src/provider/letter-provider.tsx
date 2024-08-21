@@ -44,9 +44,9 @@ export default function LettersProvider({ children, initialLetters }: Props) {
   }) => {
     try {
       const { letter } = await letterClientApi.postLetters(
-        sender,
+        {sender,
         recipient,
-        letterContent
+        letterContent}
       );
 
       setLetters((prev) => [...prev, letter]);
