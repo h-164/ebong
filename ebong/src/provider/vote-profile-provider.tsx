@@ -49,7 +49,9 @@ export default function VoteProfilesProvider({
   };
 
   return (
-    <VoteProfileContext.Provider value={{ voteProfiles, vote }}>
+    <VoteProfileContext.Provider
+      value={{ voteProfiles, vote, fetchVoteProfiles }}
+    >
       {children}
     </VoteProfileContext.Provider>
   );
