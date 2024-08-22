@@ -6,12 +6,14 @@ import { PropsWithChildren, createContext, useState } from "react";
 
 interface VoteProfilesContextValue {
   voteProfiles: VoteProfile[];
-  vote: (_id: string, voteCount: number) => Promise<void>;
+  vote: (_id: string) => Promise<void>;
+  fetchVoteProfiles: () => Promise<void>;
 }
 
 const defaultVoteProfilesContextValue: VoteProfilesContextValue = {
   voteProfiles: [],
   vote: (_id: string) => Promise.resolve(),
+  fetchVoteProfiles: () => Promise.resolve(),
 };
 
 export const VoteProfileContext = createContext<VoteProfilesContextValue>(
@@ -28,22 +30,28 @@ export default function VoteProfilesProvider({
 }: Props) {
   const [voteProfiles, setVoteProfiles] = useState(initialVoteProfiles);
 
-  const vote = async (_id: string, voteCount: number) => {
+  const fetchVoteProfiles = async () => {
     try {
-      await voteProfileClientApi.patchVoteProfiles(_id, voteCount);
+      const { vote_profiles } = await voteProfileClientApi.getVoteProfiles();
+      setVoteProfiles(vote_profiles);
+    } catch (error) {
+      console.error("Failed to fetch vote profiles:", error);
+    }
+  };
 
-      setVoteProfiles((prev) =>
-        prev.map((voteProfile) =>
-          voteProfile._id === _id ? { ...voteProfile, voteCount } : voteProfile
-        )
-      );
+  const vote = async (_id: string) => {
+    try {
+      await voteProfileClientApi.patchVoteProfiles(_id);
+      await fetchVoteProfiles();
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <VoteProfileContext.Provider value={{ voteProfiles, vote }}>
+    <VoteProfileContext.Provider
+      value={{ voteProfiles, vote, fetchVoteProfiles }}
+    >
       {children}
     </VoteProfileContext.Provider>
   );

@@ -10,7 +10,7 @@ const getLetters = async (): Promise<LettersResponse> => {
     return data;
   };
 
-const postLetters = async (sender:String, recipient:string, letterContent:string): Promise<LetterResponse> => {
+  const postLetters = async ({...rest}) => {
     const res = await fetch(
         VOTE_PROFILES_END_POINT,
         {
@@ -18,7 +18,7 @@ const postLetters = async (sender:String, recipient:string, letterContent:string
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ sender, recipient, letterContent }),
+          body: JSON.stringify({ ...rest }),
         }
       );
 
