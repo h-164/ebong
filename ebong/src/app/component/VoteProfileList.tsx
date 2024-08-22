@@ -14,23 +14,20 @@ export const VoteProfileList = () => {
       console.error("Error voting:", error);
     }
   };
-
   return (
     <>
-      {voteProfiles?.map((profile) => (
-        <div key={profile._id}>
-          <Image
-            src={profile.smilingImg}
-            alt={"profileImg"}
-            width={100}
-            height={100}
-          />
-          <h1>{profile.name}</h1>
-          <p>{profile.introduction}</p>
-          <p>{profile.voteCount}</p>
-          <button onClick={() => handleVote(profile._id)}>투표하기</button>
-        </div>
-      ))}
+      {voteProfiles?.map((profile) => {
+        const { _id, smilingImg, name, introduction, voteCount } = profile;
+        return (
+          <div key={_id}>
+            <Image src={smilingImg} alt="profileImg" width={100} height={100} />
+            <h1>{name}</h1>
+            <p>{introduction}</p>
+            <p>{voteCount}</p>
+            <button onClick={() => handleVote(_id)}>투표하기</button>
+          </div>
+        );
+      })}
     </>
   );
 };
