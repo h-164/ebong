@@ -5,8 +5,15 @@ import { Inter } from "next/font/google";
 import LettersProvider from "@/provider/letter-provider";
 import VoteProfilesProvider from "@/provider/vote-profile-provider";
 import "./globals.css";
+import localFont from "next/font/local";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const omu = localFont({
+  src: "./fonts/omuFont.ttf",
+  display: "swap",
+  weight: "45 920",
+});
 
 export const metadata: Metadata = {
   title: "이봉이 형제",
@@ -23,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={omu.className}>
         <LettersProvider initialLetters={letter_data.letters}>
           <VoteProfilesProvider
             initialVoteProfiles={vote_profile_data.vote_profiles}
