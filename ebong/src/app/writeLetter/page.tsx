@@ -3,7 +3,6 @@
 import { FormEvent } from "react";
 import { useContext } from "react";
 import { LetterContext } from "@/provider/letter-provider";
-
 export default function WriteLetter() {
   const { writeLetter } = useContext(LetterContext);
 
@@ -31,7 +30,7 @@ export default function WriteLetter() {
   };
 
   return (
-    <div>
+    <>
       <h1>Write</h1>
       <form onSubmit={onSubmit}>
         <span>sender</span>
@@ -47,6 +46,6 @@ export default function WriteLetter() {
         ></textarea>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </>
   );
 }
