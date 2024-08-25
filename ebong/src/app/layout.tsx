@@ -1,13 +1,10 @@
 import { letterClientApi } from "@/lib/client-api/letters";
 import { voteProfileClientApi } from "@/lib/client-api/vote-profiles";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import LettersProvider from "@/provider/letter-provider";
 import VoteProfilesProvider from "@/provider/vote-profile-provider";
 import "./globals.css";
 import localFont from "next/font/local";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const omu = localFont({
   src: "./fonts/omuFont.ttf",
