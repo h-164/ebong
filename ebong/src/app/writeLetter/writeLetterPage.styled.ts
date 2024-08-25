@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//web
 const borderStyle = "solid black 3.5px;"
 const upContainerHeight = "22%";
 const downContainerHeight = `${100 - Number(upContainerHeight.replace('%', ''))}%`; 
@@ -8,6 +9,10 @@ const InputMargin = `${100 - Number(LetterContentTextareaWidth.replace('%', ''))
 const WebFontSize = "1.4rem";
 const WebNameHeight = "60%";
 const WebNameWidth = "40%";
+
+//mobile
+const MobUpContainerHeight = "20%";
+const MobCownContainerHeight = `${100 - Number(MobUpContainerHeight.replace('%', ''))}%`; 
 
 export const WriteLetterPageConatiner = styled.div`
   width:100%;
@@ -27,7 +32,7 @@ export const UpContainer = styled.div`
   height: ${upContainerHeight};
 
  @media screen and (max-width: 768px) {
-    height:20%;
+    height:${MobUpContainerHeight};
   }
 `
 
@@ -43,8 +48,18 @@ export const DownConatiner = styled.div`
   gap:2%;
 
   @media screen and (max-width: 768px) {
-    height:80%;
+    height:${MobCownContainerHeight};
   }
+`;
+
+
+export const PostIconContainer = styled.div`
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  width: 220px;
+  height: 250px;
+  z-index: 10;
 `;
 
 export const Letter = styled.div`
@@ -106,4 +121,23 @@ export const SenderInput = styled.input`
   height:${WebNameHeight};
   border: ${borderStyle};
   font-size:${WebFontSize};
+`
+
+export const PostButtonContainer = styled.div`
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+`
+
+export const LetterIconContainer = styled.div`
+  position: relative; 
+  width: 110px;
+  height: 90px;
+  overflow: hidden; 
+`;
+
+export const PostFont = styled.div`
+  font-size:1.3rem;
 `

@@ -13,6 +13,10 @@ import {
   LetterSenderContainer,
   SenderInput,
   RecipientSelect,
+  PostIconContainer,
+  LetterIconContainer,
+  PostButtonContainer,
+  PostFont,
 } from "./writeLetterPage.styled";
 import Image from "next/image";
 
@@ -30,19 +34,13 @@ export default function WriteLetter() {
   return (
     <WriteLetterPageConatiner>
       <UpContainer>
-        <Image
-          src="https://drive.google.com/uc?export=view&id=1x7M7bB_On4dZZZW-ITuUPYa48uUwXOlh"
-          alt="postIcon"
-          width={220}
-          height={250}
-          style={{
-            position: "absolute",
-            top: "10%",
-            left: "30%",
-            transform: "translateX(-40%)",
-            zIndex: "10",
-          }}
-        />
+        <PostIconContainer>
+          <Image
+            src="https://drive.google.com/uc?export=view&id=1x7M7bB_On4dZZZW-ITuUPYa48uUwXOlh"
+            alt="postIcon"
+            layout="fill"
+          />
+        </PostIconContainer>
       </UpContainer>
       <DownConatiner>
         <Letter>
@@ -60,12 +58,16 @@ export default function WriteLetter() {
             <SenderInput></SenderInput>
           </LetterSenderContainer>
         </Letter>
-        <Image
-          src="https://drive.google.com/uc?export=view&id=14NbDR_JtFnwfOBfw1ZXOTv2BKedPYvSl"
-          alt="letterIcon"
-          width={130}
-          height={110}
-        />
+        <PostButtonContainer>
+          <LetterIconContainer>
+            <Image
+              src="https://drive.google.com/uc?export=view&id=14NbDR_JtFnwfOBfw1ZXOTv2BKedPYvSl"
+              alt="letterIcon"
+              layout="fill"
+            />
+          </LetterIconContainer>
+          <PostFont>보내기</PostFont>
+        </PostButtonContainer>
       </DownConatiner>
     </WriteLetterPageConatiner>
   );
