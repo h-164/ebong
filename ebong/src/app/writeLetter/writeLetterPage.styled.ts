@@ -1,18 +1,25 @@
 import styled from "styled-components";
 
+//반응형
+const max_width = "1025px";
+
 //web
 const borderStyle = "solid black 3.5px;"
 const upContainerHeight = "22%";
 const downContainerHeight = `${100 - Number(upContainerHeight.replace('%', ''))}%`; 
-const LetterContentTextareaWidth = "70%";
-const InputMargin = `${100 - Number(LetterContentTextareaWidth.replace('%', ''))}%`; 
-const WebFontSize = "1.4rem";
-const WebNameHeight = "60%";
-const WebNameWidth = "40%";
+const letterContentTextareaWidth = "70%";
+const inputMargin = `${100 - Number(letterContentTextareaWidth.replace('%', ''))}%`; 
+const fontSize = "1.4rem";
+const nameHeight = "60%";
+const nameWidth = "40%";
 
 //mobile
-const MobUpContainerHeight = "20%";
-const MobCownContainerHeight = `${100 - Number(MobUpContainerHeight.replace('%', ''))}%`; 
+const mobUpContainerHeight = "20%";
+const mobDownContainerHeight = `${100 - Number(mobUpContainerHeight.replace('%', ''))}%`; 
+const mobBorderStyle = "solid black 2.5px;"
+const mobLetterContentTextareaWidth = "90%";
+const mobInputMargin =  `${100 - Number(mobLetterContentTextareaWidth.replace('%', ''))}%`; 
+const mobNameHeight = "50%";
 
 export const WriteLetterPageConatiner = styled.div`
   width:100%;
@@ -22,7 +29,7 @@ export const WriteLetterPageConatiner = styled.div`
   flex-direction:column;
   align-items:center;
 
-   @media screen and (max-width: 768px) {
+   @media screen and (max-width: ${max_width}) {
     height:100vh;
   }
 `;
@@ -31,8 +38,8 @@ export const UpContainer = styled.div`
   width:100%;
   height: ${upContainerHeight};
 
- @media screen and (max-width: 768px) {
-    height:${MobUpContainerHeight};
+ @media screen and (max-width: ${max_width}) {
+    height:${mobUpContainerHeight};
   }
 `
 
@@ -47,8 +54,9 @@ export const DownConatiner = styled.div`
   justify-content:center;
   gap:2%;
 
-  @media screen and (max-width: 768px) {
-    height:${MobCownContainerHeight};
+  @media screen and (max-width: ${max_width}) {
+    height:${mobDownContainerHeight};
+    justify-content:center;
   }
 `;
 
@@ -60,6 +68,13 @@ export const PostIconContainer = styled.div`
   width: 220px;
   height: 250px;
   z-index: 10;
+
+  @media screen and (max-width: ${max_width}) {
+    width:130px;
+    height:140px;
+    top:6%;
+    left:7%;
+  }
 `;
 
 export const Letter = styled.div`
@@ -72,12 +87,18 @@ export const Letter = styled.div`
   align-items:center;
   border: ${borderStyle};
   
-  @media screen and (max-width: 768px) {
-    width:85%;
+  @media screen and (max-width: ${max_width}) {
+    height:70%;
+    width:90%;
+    border:${mobBorderStyle};
   }
 `
 export const LetterFont = styled.div`
   font-size:2.5rem;
+
+   @media screen and (max-width: ${max_width}) {
+    font-size:2.2rem;
+  }
 `
 
 export const LetterRecipientContainer = styled.div`
@@ -87,8 +108,12 @@ export const LetterRecipientContainer = styled.div`
   flex-direction:row;
   justify-content:flex-start;
   align-items:center;
-  margin-left:${InputMargin};
+  margin-left:${inputMargin};
   gap:10px;
+
+  @media screen and (max-width: ${max_width}) {
+    margin-left:${mobInputMargin};
+  }
 `
 
 export const LetterSenderContainer = styled.div`
@@ -98,29 +123,49 @@ export const LetterSenderContainer = styled.div`
   flex-direction:row;
   justify-content:flex-end;
   align-items:center;
-  margin-right:${InputMargin};
-  gap:10px
+  margin-right:${inputMargin};
+  gap:10px;
+  
+  @media screen and (max-width: ${max_width}) {
+    margin-right:${mobInputMargin};
+  }
 `
 
 export const LetterContentTextarea = styled.textarea`
-  width:${LetterContentTextareaWidth};
+  width:${letterContentTextareaWidth};
   height:60%;
   border: ${borderStyle};
-  font-size:${WebFontSize};
+  font-size:${fontSize};
+
+   @media screen and (max-width: ${max_width}) {
+    border:${mobBorderStyle};
+    width:${mobLetterContentTextareaWidth};
+    height:70%;
+  }
 `
 
 export const RecipientSelect = styled.select`
-  width:${WebNameWidth};
-  height:${WebNameHeight};
+  width:${nameWidth};
+  height:${nameHeight};
   border: ${borderStyle};
-  font-size:${WebFontSize};
+  font-size:${fontSize};
+
+   @media screen and (max-width: ${max_width}) {
+    border:${mobBorderStyle};
+    height:${mobNameHeight};
+  }
 `
 
 export const SenderInput = styled.input`
-  width:${WebNameWidth};
-  height:${WebNameHeight};
+  width:${nameWidth};
+  height:${nameHeight};
   border: ${borderStyle};
-  font-size:${WebFontSize};
+  font-size:${fontSize};
+
+   @media screen and (max-width: ${max_width}) {
+    border:${mobBorderStyle};
+     height:${mobNameHeight};
+  }
 `
 
 export const PostButtonContainer = styled.div`
