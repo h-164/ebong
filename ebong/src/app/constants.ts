@@ -1,0 +1,1 @@
+export const max_width = "1025px";

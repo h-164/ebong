@@ -1,7 +1,5 @@
 import styled from "styled-components";
-
-//반응형
-const max_width = "1025px";
+import { max_width } from "../constants";
 
 //web
 const borderStyle = "solid black 3.5px;"
