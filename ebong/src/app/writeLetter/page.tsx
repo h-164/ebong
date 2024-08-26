@@ -1,7 +1,7 @@
 "use client";
 
-// import { useContext } from "react";
-// import { LetterContext } from "@/provider/letter-provider";
+import { useContext, useState } from "react";
+import { LetterContext } from "@/provider/letter-provider";
 import {
   WriteLetterPageConatiner,
   UpContainer,
@@ -21,15 +21,19 @@ import {
 import Image from "next/image";
 
 export default function WriteLetter() {
-  // const { writeLetter } = useContext(LetterContext);
+  const [recipient, setRecipient] = useState("");
+  const [sender, setSender] = useState("");
+  const [letterContent, setLetterContent] = useState("");
 
-  // const onSubmit = async () => {
-  //   try {
-  //     await writeLetter({ sender, recipient, letterContent });
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
+  const { writeLetter } = useContext(LetterContext);
+
+  const handlePostLetter = async () => {
+    try {
+      await writeLetter({ sender, recipient, letterContent });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <WriteLetterPageConatiner>
@@ -46,16 +50,32 @@ export default function WriteLetter() {
         <Letter>
           <LetterRecipientContainer>
             <LetterFont>To.</LetterFont>
-            <RecipientSelect id="animals" name="animals">
+            <RecipientSelect
+              id="bongs"
+              name="bongs"
+              value={recipient}
+              onChange={(e) => setRecipient(e.target.value)}
+            >
               <option value="일봉이">일봉이</option>
               <option value="이봉이">이봉이</option>
               <option value="삼봉이">삼봉이</option>
+              <option value="오봉이">오봉이</option>
+              <option value="육봉이">육봉이</option>
+              <option value="칠봉이">칠봉이</option>
+              <option value="팔봉이">팔봉이</option>
+              <option value="씩씩작가">씩씩작가</option>
             </RecipientSelect>
           </LetterRecipientContainer>
-          <LetterContentTextarea></LetterContentTextarea>
+          <LetterContentTextarea
+            value={letterContent}
+            onChange={(e) => setLetterContent(e.target.value)}
+          ></LetterContentTextarea>
           <LetterSenderContainer>
             <LetterFont>From.</LetterFont>
-            <SenderInput></SenderInput>
+            <SenderInput
+              value={sender}
+              onChange={(e) => setSender(e.target.value)}
+            ></SenderInput>
           </LetterSenderContainer>
         </Letter>
         <PostButtonContainer>
@@ -64,6 +84,7 @@ export default function WriteLetter() {
               src="https://drive.google.com/uc?export=view&id=14NbDR_JtFnwfOBfw1ZXOTv2BKedPYvSl"
               alt="letterIcon"
               layout="fill"
+              onClick={handlePostLetter}
             />
           </LetterIconContainer>
           <PostFont>보내기</PostFont>
