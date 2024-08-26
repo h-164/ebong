@@ -206,7 +206,7 @@ export const LetterIconContainer = styled.div`
 
   &:hover .hoverImage {
     opacity: 1;
-    transform: scale(0.9); /* 이미지 크기를 70px로 줄이기 위해 0.64로 설정 (70/110) */
+    transform: scale(0.9);
     transform-origin: center center;
   }
 `;

@@ -21,6 +21,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SharedModal } from "../component/SharedModal/SharedModal";
+import { useModal } from "@/provider/shared-modal-provider";
 
 export default function WriteLetter() {
   const [recipient, setRecipient] = useState("");
@@ -31,10 +32,13 @@ export default function WriteLetter() {
 
   const { push } = useRouter();
 
+  const { openModal } = useModal();
+
   const handlePostLetter = async () => {
     try {
       await writeLetter({ sender, recipient, letterContent });
-      push("/letterList");
+      openModal();
+      // push("/letterList");
     } catch (error) {
       console.error("Error:", error);
     }

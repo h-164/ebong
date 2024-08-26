@@ -10,8 +10,12 @@ import {
   ModalRightButton,
 } from "./sharedModal.styled";
 import Image from "next/image";
+import { useModal } from "@/provider/shared-modal-provider";
 
 export const SharedModal = () => {
+  const { isModalOpen, closeModal } = useModal();
+
+  if (!isModalOpen) return null;
   return (
     <>
       <ModalContainer>
@@ -25,16 +29,16 @@ export const SharedModal = () => {
         <ModalMessageContainer>
           편지를 보냈어용
           <br />
-          {/* 24시간 안에 편지가 도착해용
+          24시간 안에 편지가 도착해용
           <br />
-          편지함으로 이동할까요? */}
+          편지함으로 이동할까요?
         </ModalMessageContainer>
         <ModalButtonContainer>
           <ModalLeftButton>네</ModalLeftButton>
           <ModalRightButton>아니오</ModalRightButton>
         </ModalButtonContainer>
       </ModalContainer>
-      <ModalBackdrop />
+      <ModalBackdrop onClick={closeModal} />
     </>
   );
 };
