@@ -19,6 +19,7 @@ import {
   PostFont,
 } from "./writeLetterPage.styled";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function WriteLetter() {
   const [recipient, setRecipient] = useState("");
@@ -27,9 +28,12 @@ export default function WriteLetter() {
 
   const { writeLetter } = useContext(LetterContext);
 
+  const { push } = useRouter();
+
   const handlePostLetter = async () => {
     try {
       await writeLetter({ sender, recipient, letterContent });
+      push("/letterList");
     } catch (error) {
       console.error("Error:", error);
     }
