@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { max_width } from '@/app/constants';
 
 //web
 const ButtonStyle = "min-width:20%; width:fit-content; height:100%; cursor:pointer; display:flex; justify-content:center; align-items:center; border-radius:10px; background-color:white;"
@@ -21,6 +22,10 @@ export const ModalContainer = styled.div`
   align-items:center;
   gap:10px;
   padding:30px 0 30px 0;
+
+  @media screen and (max-width: ${max_width}) {
+    width:90%;
+  }
 `;
 
 export const ModalBackdrop = styled.div`
