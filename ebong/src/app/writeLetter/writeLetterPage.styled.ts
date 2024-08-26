@@ -177,10 +177,38 @@ export const PostButtonContainer = styled.div`
 `
 
 export const LetterIconContainer = styled.div`
-  position: relative; 
+  position: relative;
   width: 110px;
   height: 90px;
-  overflow: hidden; 
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .defaultImage {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .hoverImage {
+    z-index: 2;
+    opacity: 0;
+  }
+
+  &:hover .defaultImage {
+    opacity: 0;
+  }
+
+  &:hover .hoverImage {
+    opacity: 1;
+    transform: scale(0.9); /* 이미지 크기를 70px로 줄이기 위해 0.64로 설정 (70/110) */
+    transform-origin: center center;
+  }
 `;
 
 export const PostFont = styled.div`
