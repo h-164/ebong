@@ -20,6 +20,7 @@ import {
 } from "./writeLetterPage.styled";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { SharedModal } from "../component/SharedModal/SharedModal";
 
 export default function WriteLetter() {
   const [recipient, setRecipient] = useState("");
@@ -102,6 +103,7 @@ export default function WriteLetter() {
           <PostFont>보내기</PostFont>
         </PostButtonContainer>
       </DownConatiner>
+      <SharedModal />
     </WriteLetterPageConatiner>
   );
 }
