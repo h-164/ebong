@@ -12,31 +12,69 @@ import {
 import Image from "next/image";
 import { useModal } from "@/provider/shared-modal-provider";
 
-export const SharedModal = () => {
+interface SharedModalProps {
+  imgUrl: string;
+  message: string;
+  leftButton?: boolean;
+  rightButton?: boolean;
+  leftButtonMessage: string;
+  rightButtonMessage: string;
+  clickLeftButton?: () => void;
+  clickRightButton?: () => void;
+}
+
+export const SharedModal = ({
+  imgUrl,
+  message,
+  leftButton = false,
+  rightButton = false,
+  leftButtonMessage,
+  rightButtonMessage,
+  clickLeftButton,
+  clickRightButton,
+}: SharedModalProps) => {
   const { isModalOpen, closeModal } = useModal();
 
   if (!isModalOpen) return null;
+
+  const handleLeft = () => {
+    closeModal();
+    if (clickLeftButton) clickLeftButton();
+  };
+
+  const handleRight = () => {
+    closeModal();
+    if (clickRightButton) clickRightButton();
+  };
+
   return (
     <>
       <ModalContainer>
         <ModalImgContainer>
-          <Image
-            src="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
-            alt="postIcon"
-            layout="fill"
-          />
+          <Image src={imgUrl} alt="modalImg" layout="fill" />
         </ModalImgContainer>
         <ModalMessageContainer>
-          편지를 보냈어용
-          <br />
-          24시간 안에 편지가 도착해용
-          <br />
-          편지함으로 이동할까요?
+          {message.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
         </ModalMessageContainer>
-        <ModalButtonContainer>
-          <ModalLeftButton>네</ModalLeftButton>
-          <ModalRightButton>아니오</ModalRightButton>
-        </ModalButtonContainer>
+        {(leftButton || rightButton) && (
+          <ModalButtonContainer>
+            {leftButton && (
+              <ModalLeftButton onClick={handleLeft}>
+                {leftButtonMessage}
+              </ModalLeftButton>
+            )}
+            {rightButton && (
+              <ModalRightButton onClick={handleRight}>
+                {rightButtonMessage}
+              </ModalRightButton>
+            )}
+          </ModalButtonContainer>
+        )}
       </ModalContainer>
       <ModalBackdrop onClick={closeModal} />
     </>
