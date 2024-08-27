@@ -1,7 +1,5 @@
 import styled from "styled-components";
-
-//반응형
-const max_width = "1025px";
+import { max_width } from "../constants";
 
 //web
 const borderStyle = "solid black 3.5px;"
@@ -206,7 +204,7 @@ export const LetterIconContainer = styled.div`
 
   &:hover .hoverImage {
     opacity: 1;
-    transform: scale(0.9); /* 이미지 크기를 70px로 줄이기 위해 0.64로 설정 (70/110) */
+    transform: scale(0.9);
     transform-origin: center center;
   }
 `;

@@ -20,6 +20,8 @@ import {
 } from "./writeLetterPage.styled";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { SharedModal } from "../component/SharedModal/SharedModal";
+import { useModal } from "@/provider/shared-modal-provider";
 
 export default function WriteLetter() {
   const [recipient, setRecipient] = useState("");
@@ -30,13 +32,19 @@ export default function WriteLetter() {
 
   const { push } = useRouter();
 
+  const { openModal } = useModal();
+
   const handlePostLetter = async () => {
     try {
       await writeLetter({ sender, recipient, letterContent });
-      push("/letterList");
+      openModal();
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  const pushLetterList = () => {
+    push("/letterList");
   };
 
   return (
@@ -102,6 +110,18 @@ export default function WriteLetter() {
           <PostFont>보내기</PostFont>
         </PostButtonContainer>
       </DownConatiner>
+      <SharedModal
+        imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+        message={
+          "편지를 보냈어용\n24시간 안에 편지가 도착해요\n편지함으로 이동할까요?"
+        }
+        leftButton={true}
+        rightButton={true}
+        leftButtonMessage="네"
+        rightButtonMessage="아니오"
+        clickLeftButton={pushLetterList}
+        clickRightButton={undefined}
+      />
     </WriteLetterPageConatiner>
   );
 }
