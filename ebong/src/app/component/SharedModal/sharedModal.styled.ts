@@ -41,8 +41,6 @@ export const ModalBackdrop = styled.div`
 
 export const ModalImgContainer = styled.div`
   position: relative;
-  width: 100px;
-  height: 130px;
   overflow: hidden;
 `;
 

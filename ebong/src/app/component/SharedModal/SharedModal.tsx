@@ -21,6 +21,7 @@ interface SharedModalProps {
   rightButtonMessage: string;
   clickLeftButton?: () => void;
   clickRightButton?: () => void;
+  imgSize?: { width?: string; height?: string };
 }
 
 export const SharedModal = ({
@@ -32,6 +33,7 @@ export const SharedModal = ({
   rightButtonMessage,
   clickLeftButton,
   clickRightButton,
+  imgSize = { width: "100px", height: "130px" },
 }: SharedModalProps) => {
   const { isModalOpen, closeModal } = useModal();
 
@@ -50,7 +52,7 @@ export const SharedModal = ({
   return (
     <>
       <ModalContainer>
-        <ModalImgContainer>
+        <ModalImgContainer style={imgSize}>
           <Image src={imgUrl} alt="modalImg" layout="fill" />
         </ModalImgContainer>
         <ModalMessageContainer>
