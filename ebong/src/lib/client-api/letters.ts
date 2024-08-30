@@ -11,6 +11,7 @@ const getLetters = async (): Promise<LettersResponse> => {
   };
 
   const postLetters = async ({...rest}) => {
+    
     const res = await fetch(
       LETTERS_END_POINT,
         {

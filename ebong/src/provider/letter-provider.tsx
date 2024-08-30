@@ -43,6 +43,18 @@ export default function LettersProvider({ children, initialLetters }: Props) {
     letterContent: string;
   }) => {
     try {
+      if (!sender) {
+        throw new Error("\n보내는 사람을 입력 안해짜나요!!!!!");
+      }
+
+      if (!recipient) {
+        throw new Error("\n누구한테 보낼 건지 선택해줘. \n 혹시 나?(두근-💕)");
+      }
+
+      if (!letterContent) {
+        throw new Error("\n편지 내용 입력하슈.");
+      }
+
       const { letter } = await letterClientApi.postLetters({
         sender,
         recipient,
@@ -50,8 +62,11 @@ export default function LettersProvider({ children, initialLetters }: Props) {
       });
 
       setLetters((prev) => [...prev, letter]);
-    } catch (error) {
-      throw new Error("편지 전송 실패\n잠시 후 다시 시도해주세요ㅠㅠ");
+    } catch (error: any) {
+      const errorMessage = error.message.startsWith("\n")
+        ? error.message
+        : "\n편지 전송 실패\n잠시 후 다시 시도해주세요ㅠㅠ";
+      throw new Error(errorMessage);
     }
   };
 
