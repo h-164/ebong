@@ -17,8 +17,8 @@ interface SharedModalProps {
   message: string;
   leftButton?: boolean;
   rightButton?: boolean;
-  leftButtonMessage: string;
-  rightButtonMessage: string;
+  leftButtonMessage?: string;
+  rightButtonMessage?: string;
   clickLeftButton?: () => void;
   clickRightButton?: () => void;
   imgSize?: { width?: string; height?: string };
@@ -29,10 +29,14 @@ export const SharedModal = ({
   message,
   leftButton = false,
   rightButton = false,
-  leftButtonMessage,
-  rightButtonMessage,
-  clickLeftButton,
-  clickRightButton,
+  leftButtonMessage = "",
+  rightButtonMessage = "",
+  clickLeftButton = () => {
+    undefined;
+  },
+  clickRightButton = () => {
+    undefined;
+  },
   imgSize = { width: "100px", height: "130px" },
 }: SharedModalProps) => {
   const { isModalOpen, closeModal } = useModal();

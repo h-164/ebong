@@ -141,7 +141,6 @@ export default function WriteLetter() {
           leftButtonMessage="네"
           rightButtonMessage="아니오"
           clickLeftButton={navigateLetterList}
-          clickRightButton={undefined}
         />
       )}
       {modalId === "error" && (
@@ -149,11 +148,7 @@ export default function WriteLetter() {
           imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
           message={errMessage}
           leftButton={true}
-          rightButton={false}
           leftButtonMessage="확인"
-          rightButtonMessage=""
-          clickLeftButton={undefined}
-          clickRightButton={undefined}
         />
       )}
     </WriteLetterPageConatiner>
