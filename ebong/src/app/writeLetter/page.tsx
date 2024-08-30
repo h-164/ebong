@@ -30,7 +30,7 @@ export default function WriteLetter() {
 
   const { writeLetter } = useContext(LetterContext);
 
-  const { push } = useRouter();
+  const { push: navigate } = useRouter();
 
   const { openModal } = useModal();
 
@@ -43,8 +43,8 @@ export default function WriteLetter() {
     }
   };
 
-  const pushLetterList = () => {
-    push("/letterList");
+  const navigateLetterList = () => {
+    navigate("/letterList");
   };
 
   return (
@@ -119,7 +119,7 @@ export default function WriteLetter() {
         rightButton={true}
         leftButtonMessage="네"
         rightButtonMessage="아니오"
-        clickLeftButton={pushLetterList}
+        clickLeftButton={navigateLetterList}
         clickRightButton={undefined}
       />
     </WriteLetterPageConatiner>
