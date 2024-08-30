@@ -24,9 +24,19 @@ import { SharedModal } from "../component/SharedModal/SharedModal";
 import { useModal } from "@/provider/shared-modal-provider";
 
 export default function WriteLetter() {
-  const [recipient, setRecipient] = useState("");
-  const [sender, setSender] = useState("");
-  const [letterContent, setLetterContent] = useState("");
+  const [letter, setLetter] = useState({
+    recipient: "",
+    sender: "",
+    content: "",
+  });
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setLetter({
+      ...letter,
+      [name]: value,
+    });
+  };
 
   const { writeLetter } = useContext(LetterContext);
 
@@ -36,7 +46,8 @@ export default function WriteLetter() {
 
   const handlePostLetter = async () => {
     try {
-      await writeLetter({ sender, recipient, letterContent });
+      const { sender, recipient, content } = letter;
+      await writeLetter({ sender, recipient, letterContent: content });
       openModal();
     } catch (error) {
       console.error("Error:", error);
@@ -63,10 +74,9 @@ export default function WriteLetter() {
           <LetterRecipientContainer>
             <LetterFont>To.</LetterFont>
             <RecipientSelect
-              id="bongs"
-              name="bongs"
-              value={recipient}
-              onChange={(e) => setRecipient(e.target.value)}
+              name="recipient"
+              value={letter.recipient}
+              onChange={handleChange}
             >
               <option value="일봉이">일봉이</option>
               <option value="이봉이">이봉이</option>
@@ -79,14 +89,16 @@ export default function WriteLetter() {
             </RecipientSelect>
           </LetterRecipientContainer>
           <LetterContentTextarea
-            value={letterContent}
-            onChange={(e) => setLetterContent(e.target.value)}
+            name="content"
+            value={letter.content}
+            onChange={handleChange}
           ></LetterContentTextarea>
           <LetterSenderContainer>
             <LetterFont>From.</LetterFont>
             <SenderInput
-              value={sender}
-              onChange={(e) => setSender(e.target.value)}
+              name="sender"
+              value={letter.sender}
+              onChange={handleChange}
             ></SenderInput>
           </LetterSenderContainer>
         </Letter>
