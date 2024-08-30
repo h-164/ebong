@@ -45,18 +45,25 @@ export default function WriteLetter() {
   const { openModal } = useModal();
 
   const handlePostLetter = async () => {
+    const { sender, recipient, content } = letter;
     try {
-      const { sender, recipient, content } = letter;
       await writeLetter({ sender, recipient, letterContent: content });
+      setModalId("sendLetter");
       openModal();
     } catch (error) {
-      console.error("Error:", error);
+      setModalId("error");
+      setErrMessage(`${error}`);
+      openModal();
     }
   };
 
   const navigateLetterList = () => {
     navigate("/letterList");
   };
+
+  const [modalId, setModalId] = useState("");
+
+  const [errMessage, setErrMessage] = useState("");
 
   return (
     <WriteLetterPageConatiner>
@@ -122,18 +129,32 @@ export default function WriteLetter() {
           <PostFont>보내기</PostFont>
         </PostButtonContainer>
       </DownConatiner>
-      <SharedModal
-        imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
-        message={
-          "편지를 보냈어용\n24시간 안에 편지가 도착해요\n편지함으로 이동할까요?"
-        }
-        leftButton={true}
-        rightButton={true}
-        leftButtonMessage="네"
-        rightButtonMessage="아니오"
-        clickLeftButton={navigateLetterList}
-        clickRightButton={undefined}
-      />
+      {modalId === "sendLetter" && (
+        <SharedModal
+          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+          message={
+            "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
+          }
+          leftButton={true}
+          rightButton={true}
+          leftButtonMessage="네"
+          rightButtonMessage="아니오"
+          clickLeftButton={navigateLetterList}
+          clickRightButton={undefined}
+        />
+      )}
+      {modalId === "error" && (
+        <SharedModal
+          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+          message={errMessage}
+          leftButton={true}
+          rightButton={false}
+          leftButtonMessage="확인"
+          rightButtonMessage=""
+          clickLeftButton={undefined}
+          clickRightButton={undefined}
+        />
+      )}
     </WriteLetterPageConatiner>
   );
 }

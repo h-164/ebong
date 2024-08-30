@@ -43,15 +43,15 @@ export default function LettersProvider({ children, initialLetters }: Props) {
     letterContent: string;
   }) => {
     try {
-      const { letter } = await letterClientApi.postLetters(
-        {sender,
+      const { letter } = await letterClientApi.postLetters({
+        sender,
         recipient,
-        letterContent}
-      );
+        letterContent,
+      });
 
       setLetters((prev) => [...prev, letter]);
     } catch (error) {
-      console.error(error);
+      throw new Error("편지 전송 실패\n잠시 후 다시 시도해주세요ㅠㅠ");
     }
   };
 
