@@ -85,6 +85,7 @@ export default function WriteLetter() {
               value={letter.recipient}
               onChange={handleChange}
             >
+              <option value="" disabled hidden />
               <option value="일봉이">일봉이</option>
               <option value="이봉이">이봉이</option>
               <option value="삼봉이">삼봉이</option>
