@@ -62,23 +62,28 @@ export const ModalButtonContainer = styled.div`
 export const ModalLeftButton =styled.div`
    ${ButtonStyle}
 
-  &:hover {
-    background-color:lightgray;
-  }
+  
 
-  &:active {
-    background-color:gray;
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color:lightgray;
+      }
+
+      &:active {
+      background-color:gray;
+      }
   }
 `
 
 export const ModalRightButton =styled.div`
     ${ButtonStyle}
-
-  &:hover {
-    background-color:lightgray;
-  }
-
-  &:active {
-    background-color:gray;
+    
+  @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color:lightgray;
+      }
+      &:active {
+        background-color:gray;
+      }
   }
 `
