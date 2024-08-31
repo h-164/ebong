@@ -36,6 +36,7 @@ export const ModalBackdrop = styled.div`
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.3);
 `;
 
