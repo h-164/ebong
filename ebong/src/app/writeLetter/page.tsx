@@ -21,7 +21,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SharedModal } from "../component/SharedModal/SharedModal";
-import { useModal } from "@/provider/shared-modal-provider";
+import { useModal } from "../component/SharedModal/sharedModal.hooks";
 
 export default function WriteLetter() {
   const [letter, setLetter] = useState({
@@ -42,7 +42,7 @@ export default function WriteLetter() {
 
   const { push: navigate } = useRouter();
 
-  const { openModal } = useModal();
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const handlePostLetter = async () => {
     const { sender, recipient, content } = letter;
@@ -136,6 +136,8 @@ export default function WriteLetter() {
           message={
             "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
           }
+          isModalOpen={isModalOpen}
+          closeModal={closeModal}
           leftButton={true}
           rightButton={true}
           leftButtonMessage="네"
@@ -147,6 +149,8 @@ export default function WriteLetter() {
         <SharedModal
           imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
           message={errMessage}
+          isModalOpen={isModalOpen}
+          closeModal={closeModal}
           leftButton={true}
           leftButtonMessage="확인"
         />

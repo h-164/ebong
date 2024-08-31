@@ -10,7 +10,6 @@ import {
   ModalRightButton,
 } from "./sharedModal.styled";
 import Image from "next/image";
-import { useModal } from "@/provider/shared-modal-provider";
 
 interface SharedModalProps {
   imgUrl: string;
@@ -22,9 +21,13 @@ interface SharedModalProps {
   clickLeftButton?: () => void;
   clickRightButton?: () => void;
   imgSize?: { width?: string; height?: string };
+  isModalOpen: boolean;
+  closeModal: () => void;
 }
 
 export const SharedModal = ({
+  isModalOpen,
+  closeModal,
   imgUrl,
   message,
   leftButton = false,
@@ -39,8 +42,6 @@ export const SharedModal = ({
   },
   imgSize = { width: "100px", height: "130px" },
 }: SharedModalProps) => {
-  const { isModalOpen, closeModal } = useModal();
-
   if (!isModalOpen) return null;
 
   const handleLeft = () => {
