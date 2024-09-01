@@ -42,28 +42,34 @@ export default function WriteLetter() {
 
   const { push: navigate } = useRouter();
 
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const {
+    isModalOpen: isSuccessModalOpen,
+    openModal: openSuccessModal,
+    closeModal: closeSuccessModal,
+    message: successMessage,
+  } = useModal();
+  const {
+    isModalOpen: isErrorModalOpen,
+    openModal: openErrorModal,
+    closeModal: closeErrorModal,
+    message: errorMessage,
+  } = useModal();
 
   const handlePostLetter = async () => {
     const { sender, recipient, content } = letter;
     try {
       await writeLetter({ sender, recipient, letterContent: content });
-      setModalId("sendLetter");
-      openModal();
+      openSuccessModal(
+        "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
+      );
     } catch (error) {
-      setModalId("error");
-      setErrMessage(`${error}`);
-      openModal();
+      openErrorModal(`${error}`);
     }
   };
 
   const navigateLetterList = () => {
     navigate("/letterList");
   };
-
-  const [modalId, setModalId] = useState("");
-
-  const [errMessage, setErrMessage] = useState("");
 
   return (
     <WriteLetterPageConatiner>
@@ -130,31 +136,25 @@ export default function WriteLetter() {
           <PostFont>보내기</PostFont>
         </PostButtonContainer>
       </DownConatiner>
-      {modalId === "sendLetter" && (
-        <SharedModal
-          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
-          message={
-            "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
-          }
-          isModalOpen={isModalOpen}
-          closeModal={closeModal}
-          leftButton={true}
-          rightButton={true}
-          leftButtonMessage="네"
-          rightButtonMessage="아니오"
-          clickLeftButton={navigateLetterList}
-        />
-      )}
-      {modalId === "error" && (
-        <SharedModal
-          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
-          message={errMessage}
-          isModalOpen={isModalOpen}
-          closeModal={closeModal}
-          leftButton={true}
-          leftButtonMessage="확인"
-        />
-      )}
+      <SharedModal
+        imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+        message={successMessage}
+        isModalOpen={isSuccessModalOpen}
+        closeModal={closeSuccessModal}
+        leftButton={true}
+        rightButton={true}
+        leftButtonMessage="네"
+        rightButtonMessage="아니오"
+        clickLeftButton={navigateLetterList}
+      />
+      <SharedModal
+        imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+        message={errorMessage}
+        isModalOpen={isErrorModalOpen}
+        closeModal={closeErrorModal}
+        leftButton={true}
+        leftButtonMessage="확인"
+      />
     </WriteLetterPageConatiner>
   );
 }
