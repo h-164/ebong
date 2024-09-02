@@ -3,7 +3,6 @@ import { voteProfileClientApi } from "@/lib/client-api/vote-profiles";
 import type { Metadata } from "next";
 import LettersProvider from "@/provider/letter-provider";
 import VoteProfilesProvider from "@/provider/vote-profile-provider";
-import { ModalProvider } from "@/provider/shared-modal-provider";
 import "./globals.css";
 import localFont from "next/font/local";
 
@@ -33,7 +32,7 @@ export default async function RootLayout({
           <VoteProfilesProvider
             initialVoteProfiles={vote_profile_data.vote_profiles}
           >
-            <ModalProvider>{children}</ModalProvider>
+            {children}
           </VoteProfilesProvider>
         </LettersProvider>
       </body>

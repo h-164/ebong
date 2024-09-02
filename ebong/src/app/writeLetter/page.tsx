@@ -21,30 +21,54 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SharedModal } from "../component/SharedModal/SharedModal";
-import { useModal } from "@/provider/shared-modal-provider";
+import { useModal } from "../component/SharedModal/sharedModal.hooks";
 
 export default function WriteLetter() {
-  const [recipient, setRecipient] = useState("");
-  const [sender, setSender] = useState("");
-  const [letterContent, setLetterContent] = useState("");
+  const [letter, setLetter] = useState({
+    recipient: "",
+    sender: "",
+    content: "",
+  });
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setLetter({
+      ...letter,
+      [name]: value,
+    });
+  };
 
   const { writeLetter } = useContext(LetterContext);
 
-  const { push } = useRouter();
+  const { push: navigate } = useRouter();
 
-  const { openModal } = useModal();
+  const {
+    isModalOpen: isSuccessModalOpen,
+    openModal: openSuccessModal,
+    closeModal: closeSuccessModal,
+    message: successMessage,
+  } = useModal();
+  const {
+    isModalOpen: isErrorModalOpen,
+    openModal: openErrorModal,
+    closeModal: closeErrorModal,
+    message: errorMessage,
+  } = useModal();
 
   const handlePostLetter = async () => {
+    const { sender, recipient, content } = letter;
     try {
-      await writeLetter({ sender, recipient, letterContent });
-      openModal();
+      await writeLetter({ sender, recipient, letterContent: content });
+      openSuccessModal(
+        "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
+      );
     } catch (error) {
-      console.error("Error:", error);
+      openErrorModal(`${error}`);
     }
   };
 
-  const pushLetterList = () => {
-    push("/letterList");
+  const navigateLetterList = () => {
+    navigate("/letterList");
   };
 
   return (
@@ -63,11 +87,11 @@ export default function WriteLetter() {
           <LetterRecipientContainer>
             <LetterFont>To.</LetterFont>
             <RecipientSelect
-              id="bongs"
-              name="bongs"
-              value={recipient}
-              onChange={(e) => setRecipient(e.target.value)}
+              name="recipient"
+              value={letter.recipient}
+              onChange={handleChange}
             >
+              <option value="" disabled hidden />
               <option value="일봉이">일봉이</option>
               <option value="이봉이">이봉이</option>
               <option value="삼봉이">삼봉이</option>
@@ -79,14 +103,16 @@ export default function WriteLetter() {
             </RecipientSelect>
           </LetterRecipientContainer>
           <LetterContentTextarea
-            value={letterContent}
-            onChange={(e) => setLetterContent(e.target.value)}
+            name="content"
+            value={letter.content}
+            onChange={handleChange}
           ></LetterContentTextarea>
           <LetterSenderContainer>
             <LetterFont>From.</LetterFont>
             <SenderInput
-              value={sender}
-              onChange={(e) => setSender(e.target.value)}
+              name="sender"
+              value={letter.sender}
+              onChange={handleChange}
             ></SenderInput>
           </LetterSenderContainer>
         </Letter>
@@ -112,15 +138,22 @@ export default function WriteLetter() {
       </DownConatiner>
       <SharedModal
         imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
-        message={
-          "편지를 보냈어용\n24시간 안에 편지가 도착해요\n편지함으로 이동할까요?"
-        }
+        message={successMessage}
+        isModalOpen={isSuccessModalOpen}
+        closeModal={closeSuccessModal}
         leftButton={true}
         rightButton={true}
         leftButtonMessage="네"
         rightButtonMessage="아니오"
-        clickLeftButton={pushLetterList}
-        clickRightButton={undefined}
+        clickLeftButton={navigateLetterList}
+      />
+      <SharedModal
+        imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+        message={errorMessage}
+        isModalOpen={isErrorModalOpen}
+        closeModal={closeErrorModal}
+        leftButton={true}
+        leftButtonMessage="확인"
       />
     </WriteLetterPageConatiner>
   );

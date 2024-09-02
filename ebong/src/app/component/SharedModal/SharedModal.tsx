@@ -10,31 +10,38 @@ import {
   ModalRightButton,
 } from "./sharedModal.styled";
 import Image from "next/image";
-import { useModal } from "@/provider/shared-modal-provider";
 
 interface SharedModalProps {
   imgUrl: string;
   message: string;
   leftButton?: boolean;
   rightButton?: boolean;
-  leftButtonMessage: string;
-  rightButtonMessage: string;
+  leftButtonMessage?: string;
+  rightButtonMessage?: string;
   clickLeftButton?: () => void;
   clickRightButton?: () => void;
+  imgSize?: { width?: string; height?: string };
+  isModalOpen: boolean;
+  closeModal: () => void;
 }
 
 export const SharedModal = ({
+  isModalOpen,
+  closeModal,
   imgUrl,
   message,
   leftButton = false,
   rightButton = false,
-  leftButtonMessage,
-  rightButtonMessage,
-  clickLeftButton,
-  clickRightButton,
+  leftButtonMessage = "",
+  rightButtonMessage = "",
+  clickLeftButton = () => {
+    undefined;
+  },
+  clickRightButton = () => {
+    undefined;
+  },
+  imgSize = { width: "100px", height: "130px" },
 }: SharedModalProps) => {
-  const { isModalOpen, closeModal } = useModal();
-
   if (!isModalOpen) return null;
 
   const handleLeft = () => {
@@ -50,7 +57,7 @@ export const SharedModal = ({
   return (
     <>
       <ModalContainer>
-        <ModalImgContainer>
+        <ModalImgContainer style={imgSize}>
           <Image src={imgUrl} alt="modalImg" layout="fill" />
         </ModalImgContainer>
         <ModalMessageContainer>

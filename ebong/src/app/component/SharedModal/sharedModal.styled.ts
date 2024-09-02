@@ -36,13 +36,12 @@ export const ModalBackdrop = styled.div`
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.3);
 `;
 
 export const ModalImgContainer = styled.div`
   position: relative;
-  width: 100px;
-  height: 130px;
   overflow: hidden;
 `;
 
@@ -64,23 +63,28 @@ export const ModalButtonContainer = styled.div`
 export const ModalLeftButton =styled.div`
    ${ButtonStyle}
 
-  &:hover {
-    background-color:lightgray;
-  }
+  
 
-  &:active {
-    background-color:gray;
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color:lightgray;
+      }
+
+      &:active {
+      background-color:gray;
+      }
   }
 `
 
 export const ModalRightButton =styled.div`
     ${ButtonStyle}
-
-  &:hover {
-    background-color:lightgray;
-  }
-
-  &:active {
-    background-color:gray;
+    
+  @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color:lightgray;
+      }
+      &:active {
+        background-color:gray;
+      }
   }
 `

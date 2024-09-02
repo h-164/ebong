@@ -198,6 +198,7 @@ export const LetterIconContainer = styled.div`
     opacity: 0;
   }
 
+@media (hover: hover) and (pointer: fine) {
   &:hover .defaultImage {
     opacity: 0;
   }
@@ -206,6 +207,7 @@ export const LetterIconContainer = styled.div`
     opacity: 1;
     transform: scale(0.9);
     transform-origin: center center;
+  }
   }
 `;
 
