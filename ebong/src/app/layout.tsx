@@ -5,6 +5,7 @@ import LettersProvider from "@/provider/letter-provider";
 import VoteProfilesProvider from "@/provider/vote-profile-provider";
 import "./globals.css";
 import localFont from "next/font/local";
+import QueryProviders from "@/provider/query-provider";
 
 const omu = localFont({
   src: "./fonts/omuFont.ttf",
@@ -28,13 +29,15 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={omu.className}>
-        <LettersProvider initialLetters={letter_data.letters}>
-          <VoteProfilesProvider
-            initialVoteProfiles={vote_profile_data.vote_profiles}
-          >
-            {children}
-          </VoteProfilesProvider>
-        </LettersProvider>
+        <QueryProviders>
+          <LettersProvider initialLetters={letter_data.letters}>
+            <VoteProfilesProvider
+              initialVoteProfiles={vote_profile_data.vote_profiles}
+            >
+              {children}
+            </VoteProfilesProvider>
+          </LettersProvider>
+        </QueryProviders>
       </body>
     </html>
   );
