@@ -1,7 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { LetterContext } from "@/provider/letter-provider";
+import { useState } from "react";
 import {
   WriteLetterPageConatiner,
   UpContainer,
@@ -22,8 +21,22 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SharedModal } from "../component/SharedModal/SharedModal";
 import { useModal } from "../component/SharedModal/sharedModal.hooks";
+import { letterClientApi } from "@/lib/client-api/letters";
+import { useMutation } from "@tanstack/react-query";
 
 export default function WriteLetter() {
+  const { mutate } = useMutation({
+    mutationFn: letterClientApi.postLetters,
+    onSuccess: () => {
+      openSuccessModal(
+        "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
+      );
+    },
+    onError: (error) => {
+      openErrorModal(`${error}`);
+    },
+  });
+
   const [letter, setLetter] = useState({
     recipient: "",
     sender: "",
@@ -37,8 +50,6 @@ export default function WriteLetter() {
       [name]: value,
     });
   };
-
-  const { writeLetter } = useContext(LetterContext);
 
   const { push: navigate } = useRouter();
 
@@ -55,16 +66,9 @@ export default function WriteLetter() {
     message: errorMessage,
   } = useModal();
 
-  const handlePostLetter = async () => {
+  const handlePostLetter = () => {
     const { sender, recipient, content } = letter;
-    try {
-      await writeLetter({ sender, recipient, letterContent: content });
-      openSuccessModal(
-        "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
-      );
-    } catch (error) {
-      openErrorModal(`${error}`);
-    }
+    mutate({ sender, recipient, letterContent: content });
   };
 
   const navigateLetterList = () => {
