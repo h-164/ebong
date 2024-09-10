@@ -1,5 +1,5 @@
 import { letterClientApi } from "@/lib/client-api/letters";
-import { LetterList } from "../component/LetterList";
+import { LetterList } from "../component/LetterList/LetterList";
 import {
   HydrationBoundary,
   QueryClient,

@@ -21,22 +21,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { SharedModal } from "../component/SharedModal/SharedModal";
 import { useModal } from "../component/SharedModal/sharedModal.hooks";
-import { letterClientApi } from "@/lib/client-api/letters";
-import { useMutation } from "@tanstack/react-query";
+import { useWriteLetter } from "./writeLetter.hooks";
 
 export default function WriteLetter() {
-  const { mutate } = useMutation({
-    mutationFn: letterClientApi.postLetters,
-    onSuccess: () => {
-      openSuccessModal(
-        "편지를 보냈어용\n24시간 안에 답장이 도착해요\n편지함으로 이동할까요?"
-      );
-    },
-    onError: (error) => {
-      openErrorModal(`${error}`);
-    },
-  });
-
   const [letter, setLetter] = useState({
     recipient: "",
     sender: "",
@@ -65,6 +52,8 @@ export default function WriteLetter() {
     closeModal: closeErrorModal,
     message: errorMessage,
   } = useModal();
+
+  const { mutate } = useWriteLetter(openSuccessModal, openErrorModal);
 
   const handlePostLetter = () => {
     const { sender, recipient, content } = letter;

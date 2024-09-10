@@ -1,17 +1,11 @@
 "use client";
 
 import { Letter } from "@/types/Letter";
-import { useQuery } from "@tanstack/react-query";
-import { letterClientApi } from "@/lib/client-api/letters";
+import { useLetterList } from "./LetterListHooks";
 
 export const LetterList = () => {
-  const { data } = useQuery({
-    queryKey: ["letters"],
-    queryFn: letterClientApi.getLetters,
-  });
-
+  const { data } = useLetterList();
   const letters = data?.letters;
-  console.log(letters);
 
   return (
     <>
