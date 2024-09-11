@@ -1,19 +1,18 @@
 "use client";
 
-import { useContext } from "react";
 import Image from "next/image";
-import { VoteProfileContext } from "@/provider/vote-profile-provider";
+import { useVoteProfileList, useVote } from "./VoteProfileListHooks";
 
 export const VoteProfileList = () => {
-  const { voteProfiles, vote } = useContext(VoteProfileContext);
+  const { data } = useVoteProfileList();
+  const voteProfiles = data?.vote_profiles;
 
-  const handleVote = async (_id: string) => {
-    try {
-      await vote(_id);
-    } catch (error) {
-      console.error("Error voting:", error);
-    }
+  const voteMutation = useVote();
+
+  const handleVote = (_id: string) => {
+    voteMutation.mutate(_id);
   };
+
   return (
     <>
       {voteProfiles?.map((profile) => {

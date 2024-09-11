@@ -1,11 +1,11 @@
 "use client";
 
 import { Letter } from "@/types/Letter";
-import { useContext } from "react";
-import { LetterContext } from "@/provider/letter-provider";
+import { useLetterList } from "./LetterListHooks";
 
 export const LetterList = () => {
-  const { letters } = useContext(LetterContext);
+  const { data } = useLetterList();
+  const letters = data?.letters;
 
   return (
     <>
