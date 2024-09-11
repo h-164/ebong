@@ -1,19 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useVoteProfileList } from "./VoteProfileListHooks";
+import { useVoteProfileList, useVote } from "./VoteProfileListHooks";
 
 export const VoteProfileList = () => {
   const { data } = useVoteProfileList();
   const voteProfiles = data?.vote_profiles;
 
-  // const handleVote = async (_id: string) => {
-  //   try {
-  //     await vote(_id);
-  //   } catch (error) {
-  //     console.error("Error voting:", error);
-  //   }
-  // };
+  const voteMutation = useVote();
+
+  const handleVote = (_id: string) => {
+    voteMutation.mutate(_id);
+  };
+
   return (
     <>
       {voteProfiles?.map((profile) => {
@@ -24,7 +23,7 @@ export const VoteProfileList = () => {
             <h1>{name}</h1>
             <p>{introduction}</p>
             <p>{voteCount}</p>
-            {/* <button onClick={() => handleVote(_id)}>투표하기</button> */}
+            <button onClick={() => handleVote(_id)}>투표하기</button>
           </div>
         );
       })}
