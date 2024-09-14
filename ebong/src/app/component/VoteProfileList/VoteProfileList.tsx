@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useVoteProfileList, useVote } from "./VoteProfileListHooks";
 import { SharedModal } from "../SharedModal/SharedModal";
 import { useModal } from "../SharedModal/sharedModal.hooks";
+import { isVoted } from "./VoteCookie";
 
 interface Profile {
   _id: string;
@@ -67,7 +68,9 @@ export const VoteProfileList = () => {
             <h1>{rankValue}등</h1>
           </div>
           {groupedProfiles[rankValue].map((profile) => {
-            const { _id, smilingImg, name, introduction, voteCount } = profile;
+            const { _id, smilingImg, name, introduction } = profile;
+            const hasVoted = isVoted(_id);
+
             return (
               <div key={_id}>
                 <Image
@@ -78,7 +81,9 @@ export const VoteProfileList = () => {
                 />
                 <h1>{name}</h1>
                 <p>{introduction}</p>
-                <button onClick={() => handleVote(_id)}>투표하기</button>
+                <button onClick={() => handleVote(_id)} disabled={hasVoted}>
+                  {hasVoted ? "투표 완료" : "투표하기"}
+                </button>
               </div>
             );
           })}
