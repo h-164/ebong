@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import {
-  WriteLetterPageConatiner,
+  WriteLetterPageContainer,
   UpContainer,
-  DownConatiner,
+  DownContainer,
   Letter,
   LetterFont,
   LetterContentTextarea,
@@ -65,7 +65,7 @@ export default function WriteLetter() {
   };
 
   return (
-    <WriteLetterPageConatiner>
+    <WriteLetterPageContainer>
       <UpContainer>
         <PostIconContainer>
           <Image
@@ -75,7 +75,7 @@ export default function WriteLetter() {
           />
         </PostIconContainer>
       </UpContainer>
-      <DownConatiner>
+      <DownContainer>
         <Letter>
           <LetterRecipientContainer>
             <LetterFont>To.</LetterFont>
@@ -128,7 +128,7 @@ export default function WriteLetter() {
           </LetterIconContainer>
           <PostFont>보내기</PostFont>
         </PostButtonContainer>
-      </DownConatiner>
+      </DownContainer>
       <SharedModal
         imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
         message={successMessage}
@@ -148,6 +148,6 @@ export default function WriteLetter() {
         leftButton={true}
         leftButtonMessage="확인"
       />
-    </WriteLetterPageConatiner>
+    </WriteLetterPageContainer>
   );
 }

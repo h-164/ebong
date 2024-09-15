@@ -19,7 +19,7 @@ const mobLetterContentTextareaWidth = "90%";
 const mobInputMargin =  `${100 - Number(mobLetterContentTextareaWidth.replace('%', ''))}%`; 
 const mobNameHeight = "50%";
 
-export const WriteLetterPageConatiner = styled.div`
+export const WriteLetterPageContainer = styled.div`
   width:100%;
   height:150vh;
   background-color:#ff97bf;
@@ -41,7 +41,7 @@ export const UpContainer = styled.div`
   }
 `
 
-export const DownConatiner = styled.div`
+export const DownContainer = styled.div`
   position: relative;
   width:100%;
   height:${downContainerHeight};

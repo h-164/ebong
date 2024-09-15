@@ -5,6 +5,21 @@ import { useVoteProfileList, useVote } from "./VoteProfileListHooks";
 import { SharedModal } from "../SharedModal/SharedModal";
 import { useModal } from "../SharedModal/sharedModal.hooks";
 import { isVoted } from "./VoteCookie";
+import {
+  ProfileListContainer,
+  ResultContainer,
+  TitleContainer,
+  VotePageContainer,
+  RankingContainer,
+  RankingFont,
+  TieProfileListContainer,
+  ProfileContainer,
+  ProfileImgContainer,
+  NameFont,
+  IntroductionFont,
+  VoteCountFont,
+  TitleFont,
+} from "./VotePage.styled";
 
 interface Profile {
   _id: string;
@@ -61,51 +76,57 @@ export const VoteProfileList = () => {
   });
 
   return (
-    <>
-      {Object.keys(groupedProfiles).map((rankValue) => (
-        <div key={rankValue} style={{ display: "flex" }}>
-          <div>
-            <h1>{rankValue}등</h1>
-          </div>
-          {groupedProfiles[rankValue].map((profile) => {
-            const { _id, smilingImg, name, introduction } = profile;
-            const hasVoted = isVoted(_id);
+    <VotePageContainer>
+      <TitleContainer>
+        <TitleFont>인기 투표</TitleFont>
+      </TitleContainer>
+      <ResultContainer>
+        {Object.keys(groupedProfiles).map((rankValue) => (
+          <ProfileListContainer key={rankValue}>
+            <RankingContainer>
+              <RankingFont>{rankValue}등</RankingFont>
+            </RankingContainer>
+            <TieProfileListContainer>
+              {groupedProfiles[rankValue].map((profile) => {
+                const { _id, smilingImg, name, introduction } = profile;
+                const hasVoted = isVoted(_id);
 
-            return (
-              <div key={_id}>
-                <Image
-                  src={smilingImg}
-                  alt="profileImg"
-                  width={100}
-                  height={100}
-                />
-                <h1>{name}</h1>
-                <p>{introduction}</p>
-                <button onClick={() => handleVote(_id)} disabled={hasVoted}>
-                  {hasVoted ? "투표 완료" : "투표하기"}
-                </button>
-              </div>
-            );
-          })}
-          <h2>{groupedProfiles[rankValue][0].voteCount}표</h2>
-        </div>
-      ))}
-      <SharedModal
-        imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
-        message={successMessage}
-        isModalOpen={isSuccessModalOpen}
-        closeModal={closeSuccessModal}
-        leftButton={true}
-        leftButtonMessage="확인"
-      />
-      <SharedModal
-        imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
-        message={errorMessage}
-        isModalOpen={isErrorModalOpen}
-        closeModal={closeErrorModal}
-        leftButton={true}
-        leftButtonMessage="확인"
-      />
-    </>
+                return (
+                  <ProfileContainer key={_id}>
+                    <ProfileImgContainer>
+                      <Image src={smilingImg} alt="profileImg" layout="fill" />
+                    </ProfileImgContainer>
+                    <NameFont>{name}</NameFont>
+                    <IntroductionFont>{introduction}</IntroductionFont>
+                    <button onClick={() => handleVote(_id)} disabled={hasVoted}>
+                      {hasVoted ? "투표 완료" : "투표하기"}
+                    </button>
+                  </ProfileContainer>
+                );
+              })}
+            </TieProfileListContainer>
+            <VoteCountFont>
+              {groupedProfiles[rankValue][0].voteCount}표
+            </VoteCountFont>
+          </ProfileListContainer>
+        ))}
+        <SharedModal
+          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+          message={successMessage}
+          isModalOpen={isSuccessModalOpen}
+          closeModal={closeSuccessModal}
+          leftButton={true}
+          leftButtonMessage="확인"
+        />
+        <SharedModal
+          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+          message={errorMessage}
+          isModalOpen={isErrorModalOpen}
+          closeModal={closeErrorModal}
+          leftButton={true}
+          leftButtonMessage="확인"
+        />
+      </ResultContainer>
+    </VotePageContainer>
   );
 };
