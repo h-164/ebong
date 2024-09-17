@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { max_width } from "@/app/constants";
 
 
@@ -53,6 +53,35 @@ export const ProfileListContainer = styled.div`
 
 export const RankingContainer = styled.div`
   background-color:#deecef;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+`
+
+const glow = keyframes`
+  0% {
+    background-color: #ffe177;
+    box-shadow: 0 0 5px #ffe177;
+  }
+  50% {
+    background-color: #ffecb5;
+    box-shadow: 0 0 20px #ffecb5;
+  }
+  100% {
+    background-color:#ffe177;
+    box-shadow: 0 0 5px #ffe177;
+  }
+`;
+
+export const FirstRankingContainer = styled.div`
+  animation: ${glow} 1.5s infinite;
   width:70px;
   height:70px;
   border-radius:50%;

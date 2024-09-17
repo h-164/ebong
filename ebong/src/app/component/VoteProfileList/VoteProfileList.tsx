@@ -19,6 +19,7 @@ import {
   IntroductionFont,
   VoteCountFont,
   TitleFont,
+  FirstRankingContainer,
 } from "./VotePage.styled";
 import { VoteButton } from "../VoteButton/VoteButton";
 
@@ -84,9 +85,16 @@ export const VoteProfileList = () => {
       <ResultContainer>
         {Object.keys(groupedProfiles).map((rankValue) => (
           <ProfileListContainer key={rankValue}>
-            <RankingContainer>
-              <RankingFont>{rankValue}등</RankingFont>
-            </RankingContainer>
+            {rankValue === "1" ? (
+              <FirstRankingContainer>
+                <RankingFont>1등</RankingFont>
+              </FirstRankingContainer>
+            ) : (
+              <RankingContainer>
+                <RankingFont>{rankValue}등</RankingFont>
+              </RankingContainer>
+            )}
+
             <TieProfileListContainer>
               {groupedProfiles[rankValue].map((profile) => {
                 const { _id, smilingImg, name, introduction } = profile;
