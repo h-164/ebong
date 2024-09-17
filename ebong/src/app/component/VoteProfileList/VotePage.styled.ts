@@ -37,15 +37,15 @@ export const ResultContainer = styled.div`
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6vh;
+  gap:9vh;
 `
 
 export const ProfileListContainer = styled.div`
   background-color:#fffbe2;
   min-width:70px;
-  padding:0 ${profileGap} 0 ${profileGap};
+  padding:3.5vh ${profileGap} 0.5vh ${profileGap};
   width:fit-content;
-  height:40vh;
+  height:41vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -53,6 +53,7 @@ export const ProfileListContainer = styled.div`
   border-radius:20px;
   position: relative;
   border: #deecef solid 10px;
+  gap:1.5vh;
 `
 
 export const RankingContainer = styled.div`
@@ -117,6 +118,7 @@ export const ProfileContainer = styled.div`
   justify-content:center;
   align-items:center;
   width:180px;
+  gap:0.5vh;
 `
 
 export const ProfileImgContainer = styled.div`
@@ -131,6 +133,8 @@ export const NameFont = styled.div`
 
 export const IntroductionFont = styled.div`
   font-size:1.3rem;
+  width:90%;
+  text-align:center;
 `
 
 export const VoteCountFont = styled.div`
