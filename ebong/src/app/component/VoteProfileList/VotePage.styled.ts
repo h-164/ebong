@@ -1,6 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import { max_width } from "@/app/constants";
 
+const profileGap = "20px";
+
 
 export const VotePageContainer = styled.div`
   width:100%;
@@ -30,17 +32,19 @@ export const TitleFont = styled.div`
 `
 
 export const ResultContainer = styled.div`
-  min-width:20%;
-  width:fit-content;
+  width:100%;
   height:fit-content;
   display:flex;
   flex-direction:column;
+  align-items:center;
   gap:6vh;
 `
 
 export const ProfileListContainer = styled.div`
   background-color:#fffbe2;
-  width:100%;
+  min-width:70px;
+  padding:0 ${profileGap} 0 ${profileGap};
+  width:fit-content;
   height:40vh;
   display:flex;
   flex-direction:column;
@@ -102,10 +106,9 @@ export const RankingFont = styled.div`
 
 export const TieProfileListContainer = styled.div`
   display:flex;
-  width:100%;
   justify-content:center;
   align-items:center;
-  gap:10%;
+  gap:${profileGap};
 `
 
 export const ProfileContainer = styled.div`
@@ -113,6 +116,7 @@ export const ProfileContainer = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  width:180px;
 `
 
 export const ProfileImgContainer = styled.div`
