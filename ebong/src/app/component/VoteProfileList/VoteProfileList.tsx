@@ -20,6 +20,7 @@ import {
   VoteCountFont,
   TitleFont,
 } from "./VotePage.styled";
+import { VoteButton } from "../VoteButton/VoteButton";
 
 interface Profile {
   _id: string;
@@ -98,9 +99,12 @@ export const VoteProfileList = () => {
                     </ProfileImgContainer>
                     <NameFont>{name}</NameFont>
                     <IntroductionFont>{introduction}</IntroductionFont>
-                    <button onClick={() => handleVote(_id)} disabled={hasVoted}>
+                    <VoteButton
+                      onClick={() => handleVote(_id)}
+                      disabled={hasVoted}
+                    >
                       {hasVoted ? "투표 완료" : "투표하기"}
-                    </button>
+                    </VoteButton>
                   </ProfileContainer>
                 );
               })}
