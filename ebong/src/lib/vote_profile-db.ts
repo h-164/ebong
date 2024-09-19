@@ -3,7 +3,7 @@ import {connectDb} from "./connect-db";
 
 export const getVoteProfiles = async ()=>{
     await connectDb();
-    const vote_profiles = await VOTE_PROFILE.find();
+    const vote_profiles = await VOTE_PROFILE.find().sort({ voteCount: -1 });
 
     return {vote_profiles};
 }
