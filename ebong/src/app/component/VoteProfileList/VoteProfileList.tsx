@@ -20,6 +20,7 @@ import {
   VoteCountFont,
   TitleFont,
   FirstRankingContainer,
+  VoteIconContainer,
 } from "./VotePage.styled";
 import { VoteButton } from "../VoteButton/VoteButton";
 
@@ -80,6 +81,13 @@ export const VoteProfileList = () => {
   return (
     <VotePageContainer>
       <TitleContainer>
+        <VoteIconContainer>
+          <Image
+            src="https://drive.google.com/uc?export=view&id=1V2fKuNjgEh88vWhmaGUZQxqSf7BkDpip"
+            alt="voteIcon"
+            layout="fill"
+          />
+        </VoteIconContainer>
         <TitleFont>인기 투표</TitleFont>
       </TitleContainer>
       <ResultContainer>
