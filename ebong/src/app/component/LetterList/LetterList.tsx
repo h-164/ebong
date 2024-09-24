@@ -14,10 +14,23 @@ import {
   ReplyContentContainer,
   ReplyOpenButton,
   SenderContainer,
-  TimeContainer,
+  DateContainer,
   TitleContainer,
 } from "./LetterList.styled";
 import { useState } from "react";
+
+const formatDate = (dateString: string): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+
+  const date = new Date(dateString);
+  return date.toLocaleString("ko-KR", options).replace(/,/g, "");
+};
 
 export const LetterList = () => {
   const { data } = useLetterList();
@@ -36,17 +49,18 @@ export const LetterList = () => {
             isReplied,
             replyContent,
           } = letter;
+
           const [isReplyOpen, setIsReplyOpen] = useState(false);
           const toggleReply = () => {
-            setIsReplyOpen((prevEsReplyOpen: boolean) => !prevEsReplyOpen);
+            setIsReplyOpen((prevIsReplyOpen) => !prevIsReplyOpen);
           };
 
           return (
             <LetterContainer key={index}>
               <RecipientContainer>to. {recipient}</RecipientContainer>
               <ContentContainer>{letterContent}</ContentContainer>
-              <TimeContainer>{date}</TimeContainer>
               <SenderContainer>from. {sender}</SenderContainer>
+              <DateContainer>{formatDate(date as string)}</DateContainer>
               {isReplied && !isReplyOpen && (
                 <ReplyOpenButton onClick={toggleReply}>
                   답장 보기▽

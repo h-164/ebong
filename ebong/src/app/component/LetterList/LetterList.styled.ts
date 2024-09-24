@@ -39,7 +39,6 @@ export const LetterContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding:5vh 0 5vh 0;
-  gap:0.4vh;
 `;
 
 export const RecipientContainer = styled.div`
@@ -51,17 +50,19 @@ export const ContentContainer = styled.div`
   font-size:1.4rem;
   width:70%;
   word-wrap: break-word;
-  word-break: break-all; 
+  word-break: break-all;
+  padding:1.2vh 0 1.2vh 0;
 `
 
-export const TimeContainer = styled.div`
-  font-size:1.2rem;
+export const DateContainer = styled.div`
+  font-size:1.1rem;
   width:70%;
+  text-align:right;
 `
 
 export const SenderContainer = styled.div`
   width:70%;
-  font-size:1.5rem;
+  font-size:1.4rem;
   text-align: right;
 `
 
@@ -73,6 +74,7 @@ export const ReplyOpenButton = styled.div`
   cursor: pointer;
   position: relative;
   animation: float 1s ease-in-out infinite;
+  padding-top:1vh;
 
   @keyframes float {
     0%, 100% {
