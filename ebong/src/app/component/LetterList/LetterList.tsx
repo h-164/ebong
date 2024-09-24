@@ -8,10 +8,16 @@ import {
   LetterListContainer,
   LetterListPageContainer,
   RecipientContainer,
+  RecipientProfile,
+  ReplyCloseButton,
+  ReplyContainer,
+  ReplyContentContainer,
+  ReplyOpenButton,
   SenderContainer,
   TimeContainer,
   TitleContainer,
 } from "./LetterList.styled";
+import { useState } from "react";
 
 export const LetterList = () => {
   const { data } = useLetterList();
@@ -30,6 +36,10 @@ export const LetterList = () => {
             isReplied,
             replyContent,
           } = letter;
+          const [isReplyOpen, setIsReplyOpen] = useState(false);
+          const toggleReply = () => {
+            setIsReplyOpen((prevEsReplyOpen: boolean) => !prevEsReplyOpen);
+          };
 
           return (
             <LetterContainer key={index}>
@@ -37,10 +47,17 @@ export const LetterList = () => {
               <ContentContainer>{letterContent}</ContentContainer>
               <TimeContainer>{date}</TimeContainer>
               <SenderContainer>from. {sender}</SenderContainer>
-              {isReplied && (
-                <p>
-                  ↳ {recipient}: {replyContent}
-                </p>
+              {isReplied && !isReplyOpen && (
+                <ReplyOpenButton onClick={toggleReply}>
+                  답장 보기▽
+                </ReplyOpenButton>
+              )}
+              {isReplyOpen && (
+                <ReplyContainer>
+                  <RecipientProfile>↳ {recipient}</RecipientProfile>
+                  <ReplyContentContainer>{replyContent}</ReplyContentContainer>
+                  <ReplyCloseButton onClick={toggleReply}>▲</ReplyCloseButton>
+                </ReplyContainer>
               )}
             </LetterContainer>
           );
