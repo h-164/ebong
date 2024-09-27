@@ -1,12 +1,11 @@
-import {LETTER} from "../models/letter.schema";
-import {connectDb} from "./connect-db";
+import { LETTER } from "../models/letter.schema";
+import { connectDb } from "./connect-db";
 
-export const getLetters = async ()=>{
+export const getLetters = async () => {
     await connectDb();
-    const letters = await LETTER.find();
-
-    return {letters};
-}
+    const letters = await LETTER.find().sort({ date: -1 });
+    return { letters };
+  };
 
 export const postLetter = async ({
         sender,
