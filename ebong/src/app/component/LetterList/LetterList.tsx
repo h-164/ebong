@@ -34,13 +34,24 @@ const formatDate = (dateString: string): string => {
 
 export const LetterList = () => {
   const { data } = useLetterList();
-  const letters = data?.letters;
+  const letters = data?.letters || [];
+
+  const [isReplyOpenMap, setIsReplyOpenMap] = useState<{
+    [key: number]: boolean;
+  }>({});
+
+  const toggleReply = (index: number) => {
+    setIsReplyOpenMap((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   return (
     <LetterListPageContainer>
       <TitleContainer>편지함</TitleContainer>
       <LetterListContainer>
-        {letters?.map((letter: Letter, index) => {
+        {letters.map((letter: Letter, index) => {
           const {
             recipient,
             letterContent,
@@ -50,27 +61,24 @@ export const LetterList = () => {
             replyContent,
           } = letter;
 
-          const [isReplyOpen, setIsReplyOpen] = useState(false);
-          const toggleReply = () => {
-            setIsReplyOpen((prevIsReplyOpen) => !prevIsReplyOpen);
-          };
-
           return (
             <LetterContainer key={index}>
               <RecipientContainer>to. {recipient}</RecipientContainer>
               <ContentContainer>{letterContent}</ContentContainer>
               <SenderContainer>from. {sender}</SenderContainer>
               <DateContainer>{formatDate(date as string)}</DateContainer>
-              {isReplied && !isReplyOpen && (
-                <ReplyOpenButton onClick={toggleReply}>
+              {isReplied && !isReplyOpenMap[index] && (
+                <ReplyOpenButton onClick={() => toggleReply(index)}>
                   답장 보기▽
                 </ReplyOpenButton>
               )}
-              {isReplyOpen && (
+              {isReplyOpenMap[index] && (
                 <ReplyContainer>
                   <RecipientProfile>↳ {recipient}</RecipientProfile>
                   <ReplyContentContainer>{replyContent}</ReplyContentContainer>
-                  <ReplyCloseButton onClick={toggleReply}>▲</ReplyCloseButton>
+                  <ReplyCloseButton onClick={() => toggleReply(index)}>
+                    ▲
+                  </ReplyCloseButton>
                 </ReplyContainer>
               )}
             </LetterContainer>
