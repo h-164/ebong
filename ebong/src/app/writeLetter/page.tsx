@@ -67,13 +67,13 @@ export default function WriteLetter() {
   return (
     <WriteLetterPageContainer>
       <UpContainer>
-        {/* <PostIconContainer>
+        <PostIconContainer>
           <Image
             src="https://drive.google.com/uc?export=view&id=1x7M7bB_On4dZZZW-ITuUPYa48uUwXOlh"
             alt="postIcon"
             fill
           />
-        </PostIconContainer> */}
+        </PostIconContainer>
       </UpContainer>
       <DownContainer>
         <Letter>
