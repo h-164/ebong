@@ -160,7 +160,7 @@ export const ProfileContainer = styled.div`
 
 export const ProfileImgContainer = styled.div`
   position: relative;
-  width:100px;
+  width:120px;
   height:120px;
 `
 

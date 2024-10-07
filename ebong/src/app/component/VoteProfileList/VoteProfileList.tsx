@@ -111,7 +111,11 @@ export const VoteProfileList = () => {
                 return (
                   <ProfileContainer key={_id}>
                     <ProfileImgContainer>
-                      <Image src={smilingImg} alt="profileImg" layout="fill" />
+                      <Image
+                        src={`https://drive.google.com/uc?export=view&id=${smilingImg}`}
+                        alt="profileImg"
+                        layout="fill"
+                      />
                     </ProfileImgContainer>
                     <NameFont>{name}</NameFont>
                     <IntroductionFont>{introduction}</IntroductionFont>
@@ -131,7 +135,7 @@ export const VoteProfileList = () => {
           </ProfileListContainer>
         ))}
         <SharedModal
-          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+          imgUrl="https://drive.google.com/uc?export=view&id=1D-qyvaPjf6spSWOROcRz7jHV3_L0g_SC"
           message={successMessage}
           isModalOpen={isSuccessModalOpen}
           closeModal={closeSuccessModal}
@@ -139,7 +143,7 @@ export const VoteProfileList = () => {
           leftButtonMessage="확인"
         />
         <SharedModal
-          imgUrl="https://drive.google.com/uc?export=view&id=149XDtE4x1iVD8JaNgBbOZSjUiVYsDS2Y"
+          imgUrl="https://drive.google.com/uc?export=view&id=1D-qyvaPjf6spSWOROcRz7jHV3_L0g_SC"
           message={errorMessage}
           isModalOpen={isErrorModalOpen}
           closeModal={closeErrorModal}
