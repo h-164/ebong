@@ -58,7 +58,7 @@ export const SharedModal = ({
     <>
       <ModalContainer>
         <ModalImgContainer style={imgSize}>
-          <Image src={imgUrl} alt="modalImg" layout="fill" />
+          <Image src={imgUrl} alt="modalImg" fill />
         </ModalImgContainer>
         <ModalMessageContainer>
           {message.split("\n").map((line, index) => (
