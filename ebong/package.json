@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.53.3",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.3",
