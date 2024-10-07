@@ -85,7 +85,7 @@ export const VoteProfileList = () => {
           <Image
             src="https://drive.google.com/uc?export=view&id=1V2fKuNjgEh88vWhmaGUZQxqSf7BkDpip"
             alt="voteIcon"
-            layout="fill"
+            fill
           />
         </VoteIconContainer>
         <TitleFont>인기 투표</TitleFont>
@@ -114,7 +114,7 @@ export const VoteProfileList = () => {
                       <Image
                         src={`https://drive.google.com/uc?export=view&id=${smilingImg}`}
                         alt="profileImg"
-                        layout="fill"
+                        fill
                       />
                     </ProfileImgContainer>
                     <NameFont>{name}</NameFont>

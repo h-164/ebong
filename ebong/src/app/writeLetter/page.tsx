@@ -71,7 +71,7 @@ export default function WriteLetter() {
           <Image
             src="https://drive.google.com/uc?export=view&id=1x7M7bB_On4dZZZW-ITuUPYa48uUwXOlh"
             alt="postIcon"
-            layout="fill"
+            fill
           />
         </PostIconContainer>
       </UpContainer>
@@ -114,14 +114,14 @@ export default function WriteLetter() {
             <Image
               src="https://drive.google.com/uc?export=view&id=14NbDR_JtFnwfOBfw1ZXOTv2BKedPYvSl"
               alt="defaultIcon"
-              layout="fill"
+              fill
               className="defaultImage"
               onClick={handlePostLetter}
             />
             <Image
               src="https://drive.google.com/uc?export=view&id=1swwEafymTDpfMH1WGRVvG7VVciYneat0"
               alt="hoverIcon"
-              layout="fill"
+              fill
               className="hoverImage"
               onClick={handlePostLetter}
             />
