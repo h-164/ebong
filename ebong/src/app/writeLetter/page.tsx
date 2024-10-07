@@ -67,13 +67,13 @@ export default function WriteLetter() {
   return (
     <WriteLetterPageContainer>
       <UpContainer>
-        <PostIconContainer>
+        {/* <PostIconContainer>
           <Image
             src="https://drive.google.com/uc?export=view&id=1x7M7bB_On4dZZZW-ITuUPYa48uUwXOlh"
             alt="postIcon"
             fill
           />
-        </PostIconContainer>
+        </PostIconContainer> */}
       </UpContainer>
       <DownContainer>
         <Letter>
@@ -110,7 +110,7 @@ export default function WriteLetter() {
           </LetterSenderContainer>
         </Letter>
         <PostButtonContainer>
-          <LetterIconContainer>
+          {/* <LetterIconContainer>
             <Image
               src="https://drive.google.com/uc?export=view&id=14NbDR_JtFnwfOBfw1ZXOTv2BKedPYvSl"
               alt="defaultIcon"
@@ -125,7 +125,7 @@ export default function WriteLetter() {
               className="hoverImage"
               onClick={handlePostLetter}
             />
-          </LetterIconContainer>
+          </LetterIconContainer> */}
           <PostFont>보내기</PostFont>
         </PostButtonContainer>
       </DownContainer>
