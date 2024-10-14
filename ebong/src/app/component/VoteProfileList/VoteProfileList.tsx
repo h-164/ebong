@@ -23,6 +23,7 @@ import {
   VoteIconContainer,
 } from "./VotePage.styled";
 import { VoteButton } from "../VoteButton/VoteButton";
+import { Header } from "../Header/Header";
 
 interface Profile {
   _id: string;
@@ -151,6 +152,7 @@ export const VoteProfileList = () => {
           leftButtonMessage="확인"
         />
       </ResultContainer>
+      <Header />
     </VotePageContainer>
   );
 };

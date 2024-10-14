@@ -43,6 +43,8 @@ export const SideBarButton = styled.div`
   border: solid 2px pink;
   cursor:pointer;
 
+  
+@media (hover: hover) and (pointer: fine) {
   &:hover {
     background-color: white;
   }
@@ -50,6 +52,7 @@ export const SideBarButton = styled.div`
   &:active {
     background-color: lightgray;
   }
+}
 `
 
 export const CloseButton = styled.div`
@@ -64,6 +67,7 @@ export const CloseButton = styled.div`
   color:white;
   cursor:pointer;
 
+  @media (hover: hover) and (pointer: fine) {
   &:hover {
     background-color:#f684af;
   }
@@ -71,4 +75,5 @@ export const CloseButton = styled.div`
   &:active {
     background-color: lightgray;
   }
+}
 `

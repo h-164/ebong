@@ -5,6 +5,7 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { Header } from "../component/Header/Header";
 
 export default async function LetterListPage() {
   const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ export default async function LetterListPage() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <LetterList />
+      <Header />
     </HydrationBoundary>
   );
 }
