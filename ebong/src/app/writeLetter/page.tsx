@@ -22,6 +22,7 @@ import { useRouter } from "next/navigation";
 import { SharedModal } from "../component/SharedModal/SharedModal";
 import { useModal } from "../component/SharedModal/sharedModal.hooks";
 import { useWriteLetter } from "./writeLetter.hooks";
+import { Header } from "../component/Header/Header";
 
 export default function WriteLetter() {
   const [letter, setLetter] = useState({
@@ -149,6 +150,7 @@ export default function WriteLetter() {
         leftButton={true}
         leftButtonMessage="확인"
       />
+      <Header />
     </WriteLetterPageContainer>
   );
 }

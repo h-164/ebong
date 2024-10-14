@@ -18,6 +18,7 @@ import {
   TitleContainer,
 } from "./LetterList.styled";
 import { useState } from "react";
+import { Header } from "../Header/Header";
 
 const formatDate = (dateString: string): string => {
   const options: Intl.DateTimeFormatOptions = {
@@ -85,6 +86,7 @@ export const LetterList = () => {
           );
         })}
       </LetterListContainer>
+      <Header />
     </LetterListPageContainer>
   );
 };
