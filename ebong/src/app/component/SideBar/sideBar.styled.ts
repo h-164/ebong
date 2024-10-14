@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { max_width } from '@/app/constants';
+
 
 export const SideBarContainer = styled.div`
   position: fixed;
@@ -17,6 +19,10 @@ export const SideBarContainer = styled.div`
   align-items:center;
   gap:10px;
   padding:30px 0 20px 0;
+
+  @media screen and (max-width: ${max_width}) {
+    width:80%;
+  }
 `;
 
 export const SideBarBackdrop = styled.div`

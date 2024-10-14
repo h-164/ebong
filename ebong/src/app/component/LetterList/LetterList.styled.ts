@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+
+const mobile_size="766px";
+const tablet_min_size="767px"
+const tablet_max_size="1025px"
+const profileGap = "20px";
+
 export const LetterListPageContainer = styled.div`
   width:100%;
   min-height:100vh;
@@ -24,7 +30,17 @@ export const LetterListContainer = styled.div`
   background-color: #deecef;
   column-count: 3;
   column-gap: 1rem;
-    padding: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
+
+  @media screen and (min-width:  ${tablet_min_size}) and (max-width:  ${tablet_max_size}) {
+    width:90%;
+  }
+
+  @media screen and (max-width: ${mobile_size}) {
+    display:flex;
+    flex-direction:column;
+    width:80%;
+  }
 `;
 
 export const LetterContainer = styled.div`
