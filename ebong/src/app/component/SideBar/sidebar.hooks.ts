@@ -7,7 +7,7 @@ interface SideBar {
   }
   
 export const useSideBar =  (): SideBar =>{
-    const [isSideBarOpen, setIsSideBarOpen] = useState(true);
+    const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   
     const openSideBar = () => {
       setIsSideBarOpen(true);
