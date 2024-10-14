@@ -14,8 +14,8 @@ interface SideBarProps {
 }
 
 export const SideBar = ({ isSideBarOpen, closeSideBar }: SideBarProps) => {
-  if (!isSideBarOpen) return null;
   const { push: navigate } = useRouter();
+  if (!isSideBarOpen) return null;
 
   return (
     <>
