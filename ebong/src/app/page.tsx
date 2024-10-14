@@ -17,8 +17,8 @@ export default function Home() {
       <Image
         src="https://drive.google.com/uc?export=view&id=1O31iPe-hB-Ot0e4cgkwQO5b2impEAoT2"
         alt="homeIcon"
-        width={700}
-        height={330}
+        width={330}
+        height={170}
       />
     </MainContainer>
   );
